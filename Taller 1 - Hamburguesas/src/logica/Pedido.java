@@ -7,7 +7,7 @@ public class Pedido {
 	private String nombreCliente;
 	private String direccionCliente;
 	
-	public Pedido (String nombreCliente, String direccionCliente) {
+	public Pedido(String nombreCliente, String direccionCliente) {
 		this.nombreCliente = nombreCliente;
 		this.direccionCliente = direccionCliente;
 		

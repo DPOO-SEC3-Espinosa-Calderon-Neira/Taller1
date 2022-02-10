@@ -33,8 +33,12 @@ public class Aplicacion {
 			} catch (NumberFormatException e) {
 				System.out.println("Debe seleccionar uno de los números de las opciones");
 			}
-		input.close();
+			input.close();
 		}
+	}
+	
+	public void mostrarMenu() {
+		System.out.println("\nOpciones ");
 	}
 
 	private void consultar_pedido() {
@@ -51,9 +55,5 @@ public class Aplicacion {
 
 	private void iniciar_pedido() {
 
-	}
-
-	public void mostrarMenu() {
-		System.out.println("\nOpciones ");
 	}
 }
