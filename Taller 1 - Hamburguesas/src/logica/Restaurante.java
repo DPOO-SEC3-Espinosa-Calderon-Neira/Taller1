@@ -43,6 +43,7 @@ public class Restaurante {
 	}
 
 	public static void cargarInfoRestaurante(String archivoIngredientes, String archivoMenu, String archivoCombos) throws IOException {
+		System.out.println("hola");
 		cargarIngredientes(archivoIngredientes);
 		cargarMenu(archivoMenu);
 		cargarCombos(archivoCombos);
@@ -52,22 +53,26 @@ public class Restaurante {
 		
 		BufferedReader br = new BufferedReader(new FileReader(archivoIngredientes));
 		String linea = br.readLine();
-	
-		while(linea != null) {
+		int i = 1;
+		while(i<=15) {
 			String[] partes = linea.split(";");
-			
+			System.out.println("hola222");
+			i++;
 		}
 
 		br.close();
 	}
 
 	private static void cargarMenu(String archivoMenu) throws IOException {
-
+		System.out.println("hola3");
 		BufferedReader br = new BufferedReader(new FileReader(archivoMenu));
 		String linea = br.readLine();
-	
 		while(linea != null) {
 			String[] partes = linea.split(";");
+			String productoMenu = partes[0];
+			int precioBase = Integer.parseInt(partes[1]);
+			ProductoMenu nuevoProductoMenu = new ProductoMenu(productoMenu, precioBase);
+			
 			
 		}
 

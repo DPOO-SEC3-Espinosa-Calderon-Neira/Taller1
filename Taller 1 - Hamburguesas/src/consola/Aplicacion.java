@@ -10,15 +10,16 @@ public class Aplicacion {
 	
 	public static void main(String[] args) throws IOException {
 		Aplicacion consola = new Aplicacion();
-		consola.ejecutarOpcion();
 		consola.cargarArchivos();
+		consola.ejecutarOpcion();
+		
 	}
 	
 	public void cargarArchivos() throws IOException {
 		Restaurante.cargarInfoRestaurante
-				("C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\combos.txt", 
-				"C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\ingredientes.txt",
-				"C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\menu.txt");
+				("C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\ingredientes.txt", 
+				"C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\menu.txt",
+				"C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\combos.txt");
 	}
 
 	public void ejecutarOpcion() {
@@ -39,6 +40,7 @@ public class Aplicacion {
 				else if (opcion_seleccionada == 4)
 					consultar_pedido();
 				else if (opcion_seleccionada == 5) {
+					
 					System.out.println("Saliendo de la aplicación...");
 					continuar = false;
 				} 
@@ -62,19 +64,20 @@ public class Aplicacion {
 		
 	}
 	
-	private void consultar_pedido() {
+	private void iniciar_pedido() {
+		
+	}
+	
+	private void agregar_elemento() {
 
 	}
-
+	
 	private void finalizar_pedido() {
 
 	}
 
-	private void agregar_elemento() {
+	private void consultar_pedido() {
 
 	}
 
-	private void iniciar_pedido() {
-
-	}
 }
