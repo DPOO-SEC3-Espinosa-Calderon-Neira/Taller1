@@ -2,6 +2,7 @@ package logica;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -43,7 +44,6 @@ public class Restaurante {
 	}
 
 	public static void cargarInfoRestaurante(String archivoIngredientes, String archivoMenu, String archivoCombos) throws IOException {
-		System.out.println("hola");
 		cargarIngredientes(archivoIngredientes);
 		cargarMenu(archivoMenu);
 		cargarCombos(archivoCombos);
@@ -51,27 +51,33 @@ public class Restaurante {
 
 	private static void cargarIngredientes(String archivoIngredientes) throws IOException {
 		
-		BufferedReader br = new BufferedReader(new FileReader(archivoIngredientes));
-		String linea = br.readLine();
-		int i = 1;
-		while(i<=15) {
-			String[] partes = linea.split(";");
-			System.out.println("hola222");
-			i++;
+		File file = new File(archivoIngredientes);
+		FileReader fr = new FileReader(file);
+		BufferedReader br = new BufferedReader(fr);
+		String line;
+		while((line = br.readLine()) != null){
+		    //process the line
+			String[] partes = line.split(";");
+		    
 		}
 
 		br.close();
+		
 	}
 
 	private static void cargarMenu(String archivoMenu) throws IOException {
-		System.out.println("hola3");
-		BufferedReader br = new BufferedReader(new FileReader(archivoMenu));
-		String linea = br.readLine();
-		while(linea != null) {
-			String[] partes = linea.split(";");
+		
+		File file = new File(archivoMenu);
+		FileReader fr = new FileReader(file);
+		BufferedReader br = new BufferedReader(fr);
+		String line;
+		while((line = br.readLine()) != null){
+		    //process the line
+			String[] partes = line.split(";");
 			String productoMenu = partes[0];
 			int precioBase = Integer.parseInt(partes[1]);
 			ProductoMenu nuevoProductoMenu = new ProductoMenu(productoMenu, precioBase);
+			
 			
 			
 		}
@@ -83,7 +89,6 @@ public class Restaurante {
 		
 		BufferedReader br = new BufferedReader(new FileReader(archivoCombos));
 		String linea = br.readLine();
-	
 		while(linea != null) {
 			String[] partes = linea.split(";");
 			
