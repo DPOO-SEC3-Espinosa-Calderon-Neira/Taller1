@@ -39,7 +39,7 @@ public class Restaurante {
 
 	}
 
-	public void cargarInfoRestaurante(File archivoIngredientes, File archivoMenu, File archivoCombos) {
+	public void cargarInfoRestaurante(File archivoIngredientes, File archivoMenu, File archivoCombos) throws IOException {
 		cargarIngredientes(archivoIngredientes);
 		cargarMenu(archivoMenu);
 		cargarCombos(archivoCombos);
