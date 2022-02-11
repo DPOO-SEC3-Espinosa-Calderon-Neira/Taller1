@@ -13,10 +13,13 @@ import java.util.Map;
 public class Restaurante {
 
 	private Pedido pedido;
-	private Ingrediente ingrediente;
+	private ArrayList<Producto> productos;
+	private ArrayList<Ingrediente> ingredientes;
+	private ProductoMenu productoMenu;
+	private Combo combo;
 
 	public Restaurante() {
-
+		
 	}
 
 	public void iniciarPedido(String nombreCliente, String direccionCliente) {
@@ -39,13 +42,13 @@ public class Restaurante {
 
 	}
 
-	public void cargarInfoRestaurante(File archivoIngredientes, File archivoMenu, File archivoCombos) {
+	public static void cargarInfoRestaurante(String archivoIngredientes, String archivoMenu, String archivoCombos) throws IOException {
 		cargarIngredientes(archivoIngredientes);
 		cargarMenu(archivoMenu);
 		cargarCombos(archivoCombos);
 	}
 
-	private void cargarIngredientes(File archivoIngredientes) throws IOException {
+	private static void cargarIngredientes(String archivoIngredientes) throws IOException {
 		
 		BufferedReader br = new BufferedReader(new FileReader(archivoIngredientes));
 		String linea = br.readLine();
@@ -58,7 +61,7 @@ public class Restaurante {
 		br.close();
 	}
 
-	private void cargarMenu(File archivoMenu) throws IOException {
+	private static void cargarMenu(String archivoMenu) throws IOException {
 
 		BufferedReader br = new BufferedReader(new FileReader(archivoMenu));
 		String linea = br.readLine();
@@ -71,7 +74,7 @@ public class Restaurante {
 		br.close();
 	}
 
-	private void cargarCombos(File archivoCombos) throws IOException {
+	private static void cargarCombos(String archivoCombos) throws IOException {
 		
 		BufferedReader br = new BufferedReader(new FileReader(archivoCombos));
 		String linea = br.readLine();
