@@ -1,6 +1,7 @@
 package logica;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,8 +15,6 @@ public class Restaurante {
 	private Pedido pedido;
 	private Ingrediente ingrediente;
 
-	
-	
 	public Restaurante() {
 
 	}
@@ -40,21 +39,48 @@ public class Restaurante {
 
 	}
 
-	public void cargarInfoRestaurante(String archivoIngredientes, String archivoMenu, String archivoCombos) {
+	public void cargarInfoRestaurante(File archivoIngredientes, File archivoMenu, File archivoCombos) {
 		cargarIngredientes(archivoIngredientes);
 		cargarMenu(archivoMenu);
 		cargarCombos(archivoCombos);
 	}
 
-	private void cargarIngredientes(String archivoIngredientes) {
+	private void cargarIngredientes(File archivoIngredientes) throws IOException {
+		
+		BufferedReader br = new BufferedReader(new FileReader(archivoIngredientes));
+		String linea = br.readLine();
+	
+		while(linea != null) {
+			String[] partes = linea.split(";");
+			
+		}
 
+		br.close();
 	}
 
-	private void cargarMenu(String archivoMenu) {
+	private void cargarMenu(File archivoMenu) throws IOException {
 
+		BufferedReader br = new BufferedReader(new FileReader(archivoMenu));
+		String linea = br.readLine();
+	
+		while(linea != null) {
+			String[] partes = linea.split(";");
+			
+		}
+
+		br.close();
 	}
 
-	private void cargarCombos(String archivoCombos) {
+	private void cargarCombos(File archivoCombos) throws IOException {
+		
+		BufferedReader br = new BufferedReader(new FileReader(archivoCombos));
+		String linea = br.readLine();
+	
+		while(linea != null) {
+			String[] partes = linea.split(";");
+			
+		}
 
+		br.close();
 	}
 }

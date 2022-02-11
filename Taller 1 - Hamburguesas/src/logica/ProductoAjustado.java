@@ -1,10 +1,15 @@
 package logica;
 
-public class ProductoAjustado {
+public class ProductoAjustado implements Producto {
 	
 	public ProductoAjustado(ProductoMenu base) {
 		
 	}
+	
+	/*
+	 * Los siguientes métodos son la implementación de los métodos
+	 * en la clase Producto.
+	 */
 	
 	public String getNombre() {
 		

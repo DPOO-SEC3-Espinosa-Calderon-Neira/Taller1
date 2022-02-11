@@ -1,6 +1,6 @@
 package logica;
 
-public class ProductoMenu {
+public class ProductoMenu implements Producto {
 	
 	private String nombre;
 	private int precioBase;
@@ -9,6 +9,11 @@ public class ProductoMenu {
 		this.nombre = nombre;
 		this.precioBase = precioBase;
 	}
+	
+	/*
+	 * Los siguientes métodos son la implementación de los métodos
+	 * en la clase Producto.
+	 */
 	
 	public String getNombre() {
 		return nombre;
