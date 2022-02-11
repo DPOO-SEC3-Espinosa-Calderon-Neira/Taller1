@@ -11,7 +11,7 @@ public class Combo implements Producto {
 	}
 	
 	public void agregarItemACombo(Producto itemCombo) {
-		String cambios = "CAMBIOS PRUEBA";
+		
 	}
 	
 	/*
