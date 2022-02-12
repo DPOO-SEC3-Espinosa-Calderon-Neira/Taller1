@@ -21,9 +21,9 @@ public class Restaurante {
 	private Ingrediente ingrediente;
 	private ProductoMenu productoMenu;
 	private Combo combo;
-	
+
 	public Restaurante() {
-		
+
 	}
 
 	public void iniciarPedido(String nombreCliente, String direccionCliente) {
@@ -46,7 +46,8 @@ public class Restaurante {
 
 	}
 
-	public static void cargarInfoRestaurante(String archivoIngredientes, String archivoMenu, String archivoCombos) throws IOException {
+	public static void cargarInfoRestaurante(String archivoIngredientes, String archivoMenu, String archivoCombos)
+			throws IOException {
 		cargarIngredientes(archivoIngredientes);
 		cargarMenu(archivoMenu);
 		cargarCombos(archivoCombos);
@@ -58,16 +59,16 @@ public class Restaurante {
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
 		String line;
-		while((line = br.readLine()) != null){
-		    String[] partes = line.split(";");
-		    String nombreIngrediente = partes[0];
+		while ((line = br.readLine()) != null) {
+			String[] partes = line.split(";");
+			String nombreIngrediente = partes[0];
 			int costoAdicional = Integer.parseInt(partes[1]);
 			Ingrediente nuevoIngrediente = new Ingrediente(nombreIngrediente, costoAdicional);
 			ingredientes.add(nuevoIngrediente);
 		}
-		
+
 		br.close();
-		
+
 	}
 
 	private static void cargarMenu(String archivoMenu) throws IOException {
@@ -76,36 +77,36 @@ public class Restaurante {
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
 		String line;
-		while((line = br.readLine()) != null){
+		while ((line = br.readLine()) != null) {
 			String[] partes = line.split(";");
 			String productoMenu = partes[0];
 			int precioBase = Integer.parseInt(partes[1]);
 			ProductoMenu nuevoProductoMenu = new ProductoMenu(productoMenu, precioBase);
 			productosMenu.add(nuevoProductoMenu);
-			
+
 		}
 
 		br.close();
 	}
 
 	private static void cargarCombos(String archivoCombos) throws IOException {
-		
+
 		File file = new File(archivoCombos);
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
 		String line;
-		while((line = br.readLine()) != null){
+		while ((line = br.readLine()) != null) {
 			String[] partes = line.split(";");
 			String nombreCombo = partes[0];
 			String descuentoStr = partes[1];
 			descuentoStr = descuentoStr.replace("%", "");
-			double descuento = Double.parseDouble(descuentoStr)/100;
-			
+			double descuento = Double.parseDouble(descuentoStr) / 100;
+
 			String productoMenu1 = partes[2];
 			String productoMenu2 = partes[3];
 			String productoMenu3 = partes[4];
-			
-			//Producto producto = nuevoProductoMenu;
+
+			// Producto producto = nuevoProductoMenu;
 		}
 
 		br.close();
