@@ -6,7 +6,7 @@ public class Combo implements Producto {
 	private String nombreCombo;
 
 	public Combo(double descuento, String nombreCombo) {
-		this.descuento = descuento;
+		this.setDescuento(descuento);
 		this.nombreCombo = nombreCombo;
 	}
 	
@@ -15,19 +15,30 @@ public class Combo implements Producto {
 	}
 	
 	/*
-	 * Los siguientes métodos son la implementación de los métodos
+	 * Los siguientes mï¿½todos son la implementaciï¿½n de los mï¿½todos
 	 * en la clase Combo.
 	 */
 
 	public String getNombre() {
+		return nombreCombo;
 
 	}
 	
 	public int getPrecio() {
+		return 0;
 
 	}
 	
 	public String generarTextoFactura() {
+		return nombreCombo;
 		
+	}
+
+	public double getDescuento() {
+		return descuento;
+	}
+
+	public void setDescuento(double descuento) {
+		this.descuento = descuento;
 	}
 }

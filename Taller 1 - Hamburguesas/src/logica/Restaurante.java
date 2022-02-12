@@ -39,10 +39,12 @@ public class Restaurante {
 	}
 
 	public ArrayList<Producto> getMenuBase() {
+		return null;
 
 	}
 
 	public ArrayList<Ingrediente> getIngredientes() {
+		return null;
 
 	}
 
@@ -110,5 +112,37 @@ public class Restaurante {
 		}
 
 		br.close();
+	}
+
+	public ProductoMenu getProductoMenu() {
+		return productoMenu;
+	}
+
+	public void setProductoMenu(ProductoMenu productoMenu) {
+		this.productoMenu = productoMenu;
+	}
+
+	public Ingrediente getIngrediente() {
+		return ingrediente;
+	}
+
+	public void setIngrediente(Ingrediente ingrediente) {
+		this.ingrediente = ingrediente;
+	}
+
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+
+	public Combo getCombo() {
+		return combo;
+	}
+
+	public void setCombo(Combo combo) {
+		this.combo = combo;
 	}
 }

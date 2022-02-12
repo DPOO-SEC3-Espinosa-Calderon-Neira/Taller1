@@ -8,7 +8,7 @@ public class Pedido {
 	private String direccionCliente;
 
 	public Pedido(String nombreCliente, String direccionCliente) {
-		this.nombreCliente = nombreCliente;
+		this.setNombreCliente(nombreCliente);
 		this.direccionCliente = direccionCliente;
 	}
 
@@ -21,22 +21,42 @@ public class Pedido {
 	}
 
 	private int getPrecioNetoPedido() {
+		return idPedido;
 
 	}
 
 	private int getPrecioTotalPedido() {
+		return idPedido;
 
 	}
 
 	private int getPrecioIVAPedido() {
+		return idPedido;
 
 	}
 
 	private String generarTextoFactura() {
+		return direccionCliente;
 
 	}
 
 	public void guardarFactura(String archivo) {
 
+	}
+
+	public static int getNumeroPedidos() {
+		return numeroPedidos;
+	}
+
+	public static void setNumeroPedidos(int numeroPedidos) {
+		Pedido.numeroPedidos = numeroPedidos;
+	}
+
+	public String getNombreCliente() {
+		return nombreCliente;
+	}
+
+	public void setNombreCliente(String nombreCliente) {
+		this.nombreCliente = nombreCliente;
 	}
 }

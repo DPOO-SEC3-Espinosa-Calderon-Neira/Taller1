@@ -7,19 +7,22 @@ public class ProductoAjustado implements Producto {
 	}
 	
 	/*
-	 * Los siguientes métodos son la implementación de los métodos
+	 * Los siguientes mï¿½todos son la implementaciï¿½n de los mï¿½todos
 	 * en la clase Producto.
 	 */
 	
 	public String getNombre() {
+		return null;
 		
 	}
 	
 	public int getPrecio() {
+		return 0;
 		
 	}
 	
 	public String generarTextoFactura() {
+		return null;
 		
 	}
 }
