@@ -3,9 +3,6 @@ package logica;
 import java.io.BufferedReader;
 import java.io.File;
 import java.util.Scanner;
-
-import uniandes.dpoo.taller0.modelo.Evento;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,7 +17,10 @@ public class Restaurante {
 	private Producto producto;
 	private Ingrediente ingrediente;
 	private ProductoMenu productoMenu;
-	private Combo combo;
+
+	ArrayList<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+	ArrayList<ProductoMenu> productosMenu = new ArrayList<ProductoMenu>();
+	ArrayList<Combo> combo = new ArrayList<Combo>();
 
 	public Restaurante() {
 
@@ -38,29 +38,41 @@ public class Restaurante {
 		return pedido;
 	}
 
-	public ArrayList<Producto> getMenuBase() {
-		return null;
-
+	public ArrayList<ProductoMenu> getMenuBase() {
+		return productosMenu;
 	}
 
 	public ArrayList<Ingrediente> getIngredientes() {
-		return null;
-
+		return ingredientes;
 	}
 
-	public static void cargarInfoRestaurante(String archivoIngredientes, String archivoMenu, String archivoCombos)
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public Ingrediente getIngrediente() {
+		return ingrediente;
+	}
+
+	public ProductoMenu getProductoMenu() {
+		return productoMenu;
+	}
+
+	public void cargarInfoRestaurante(String archivoIngredientes, String archivoMenu, String archivoCombos)
 			throws IOException {
+
 		cargarIngredientes(archivoIngredientes);
 		cargarMenu(archivoMenu);
 		cargarCombos(archivoCombos);
 	}
 
-	private static void cargarIngredientes(String archivoIngredientes) throws IOException {
-		ArrayList<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+	private void cargarIngredientes(String archivoIngredientes) throws IOException {
+
 		File file = new File(archivoIngredientes);
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
 		String line;
+
 		while ((line = br.readLine()) != null) {
 			String[] partes = line.split(";");
 			String nombreIngrediente = partes[0];
@@ -73,76 +85,60 @@ public class Restaurante {
 
 	}
 
-	private static void cargarMenu(String archivoMenu) throws IOException {
+	private void cargarMenu(String archivoMenu) throws IOException {
+
 		ArrayList<ProductoMenu> productosMenu = new ArrayList<ProductoMenu>();
 		File file = new File(archivoMenu);
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
 		String line;
+
 		while ((line = br.readLine()) != null) {
 			String[] partes = line.split(";");
 			String productoMenu = partes[0];
 			int precioBase = Integer.parseInt(partes[1]);
 			ProductoMenu nuevoProductoMenu = new ProductoMenu(productoMenu, precioBase);
 			productosMenu.add(nuevoProductoMenu);
-
 		}
 
 		br.close();
 	}
 
-	private static void cargarCombos(String archivoCombos) throws IOException {
+	private void cargarCombos(String archivoCombos) throws IOException {
 
 		File file = new File(archivoCombos);
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
 		String line;
+
 		while ((line = br.readLine()) != null) {
 			String[] partes = line.split(";");
 			String nombreCombo = partes[0];
 			String descuentoStr = partes[1];
 			descuentoStr = descuentoStr.replace("%", "");
 			double descuento = Double.parseDouble(descuentoStr) / 100;
-
 			String productoMenu1 = partes[2];
 			String productoMenu2 = partes[3];
 			String productoMenu3 = partes[4];
+			double precio = 0;
 
-			// Producto producto = nuevoProductoMenu;
+			for (int i = 0; i < productosMenu.size(); i++) {
+				ProductoMenu valor = productosMenu.get(i);
+
+				if (valor.getNombre().equals(productoMenu1)) {
+					precio += valor.getPrecio();
+				} else if (valor.getNombre().equals(productoMenu2)) {
+					precio += valor.getPrecio();
+				} else if (valor.getNombre().equals(productoMenu3)) {
+					precio += valor.getPrecio();
+				}
+			}
+
+			descuento = descuento * precio;
+			Combo combo_descuento = new Combo(descuento, nombreCombo);
+			combo.add(combo_descuento);
 		}
 
 		br.close();
-	}
-
-	public ProductoMenu getProductoMenu() {
-		return productoMenu;
-	}
-
-	public void setProductoMenu(ProductoMenu productoMenu) {
-		this.productoMenu = productoMenu;
-	}
-
-	public Ingrediente getIngrediente() {
-		return ingrediente;
-	}
-
-	public void setIngrediente(Ingrediente ingrediente) {
-		this.ingrediente = ingrediente;
-	}
-
-	public Producto getProducto() {
-		return producto;
-	}
-
-	public void setProducto(Producto producto) {
-		this.producto = producto;
-	}
-
-	public Combo getCombo() {
-		return combo;
-	}
-
-	public void setCombo(Combo combo) {
-		this.combo = combo;
 	}
 }
