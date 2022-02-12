@@ -58,8 +58,7 @@ public class Restaurante {
 		return productoMenu;
 	}
 
-	public void cargarInfoRestaurante(String archivoIngredientes, String archivoMenu, String archivoCombos)
-			throws IOException {
+	public void cargarInfoRestaurante(String archivoIngredientes, String archivoMenu, String archivoCombos)	throws IOException {
 
 		cargarIngredientes(archivoIngredientes);
 		cargarMenu(archivoMenu);

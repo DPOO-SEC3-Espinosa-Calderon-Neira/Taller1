@@ -16,7 +16,7 @@ public class ProductoAjustado implements Producto {
 		
 	}
 	
-	public int getPrecio() {
+	public double getPrecio() {
 		return 0;
 		
 	}

@@ -6,7 +6,7 @@ import logica.Restaurante;
 
 public class Aplicacion {
 	
-	private Restaurante restaurante;
+	private Restaurante restaurante = new Restaurante();
 	
 	public static void main(String[] args) throws IOException {
 		Aplicacion consola = new Aplicacion();
@@ -16,7 +16,7 @@ public class Aplicacion {
 	}
 	
 	public void cargarArchivos() throws IOException {
-		Restaurante.cargarInfoRestaurante
+		restaurante.cargarInfoRestaurante
 				("C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\ingredientes.txt", 
 				"C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\menu.txt",
 				"C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\combos.txt");
