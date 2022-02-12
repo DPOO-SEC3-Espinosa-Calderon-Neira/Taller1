@@ -3,7 +3,7 @@ package logica;
 public interface Producto {
 	
 	public String getNombre();
-	public int getPrecio();
+	public double getPrecio();
 	public String generarTextoFactura();
 
 }

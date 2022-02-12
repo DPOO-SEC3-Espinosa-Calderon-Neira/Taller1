@@ -19,7 +19,7 @@ public class ProductoMenu implements Producto {
 		return nombre;
 	}
 	
-	public int getPrecio() {
+	public double getPrecio() {
 		return precioBase;
 	}
 	
