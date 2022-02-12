@@ -94,12 +94,12 @@ public class Restaurante {
 
 		while ((line = br.readLine()) != null) {
 			String[] partes = line.split(";");
-			String productoMenu = partes[0];
+			String nombreProducto = partes[0];
 			int precioBase = Integer.parseInt(partes[1]);
-			ProductoMenu nuevoProductoMenu = new ProductoMenu(productoMenu, precioBase);
+			ProductoMenu nuevoProductoMenu = new ProductoMenu(nombreProducto, precioBase);
 			productosMenu.add(nuevoProductoMenu);
 		}
-
+		
 		br.close();
 	}
 
