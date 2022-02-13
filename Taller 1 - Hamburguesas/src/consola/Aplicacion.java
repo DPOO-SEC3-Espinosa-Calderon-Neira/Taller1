@@ -3,14 +3,19 @@ package consola;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import logica.Combo;
 import logica.Pedido;
+import logica.ProductoMenu;
 import logica.Restaurante;
 
 public class Aplicacion {
 	
 	private Restaurante restaurante = new Restaurante();
+	private Pedido pedido;
+	private Combo combo;
 	
 	public static void main(String[] args) throws IOException {
 		Aplicacion consola = new Aplicacion();
@@ -71,25 +76,42 @@ public class Aplicacion {
 	private void iniciar_pedido() {
 		String nombreCliente = input("Por favor ingrese su nombre");
 		String direccionCliente = input("Por favor ingrese su direccion");
-		Pedido pedido = new Pedido(nombreCliente, direccionCliente);
-		System.out.println("\n---------- MENU ----------\n");
-		System.out.println("1. Ver productos");
-		System.out.println("2. Ver combos\n");
-		int productosCombo = Integer.parseInt(input("Ingrese 1 para ver los productos y 2 para ver los combos"));
-		if (productosCombo == 1) {
-			System.out.println("\n---------- PRODUCTOS ----------\n");
-			
-			int numProducto = Integer.parseInt(input("Ingrese el numero del producto que desea agregar"));
-		}
-		else {
-			System.out.println("\n---------- COMBOS ----------\n");
-			int numProducto = Integer.parseInt(input("Ingrese el numero del producto que desea agregar"));
-		}
-		
+		pedido = new Pedido(nombreCliente, direccionCliente);
+		System.out.println("\nSeleccione la opción 2 para ver el menu y agregar elementos al carrito.");
 	}
 	
 	private void agregar_elemento() {
-
+		System.out.println("\n-------------------- MENU --------------------\n");
+		System.out.println("1. Ver productos");
+		System.out.println("2. Ver combos\n");
+		int menu = Integer.parseInt(input("Ingrese 1 para ver los productos y 2 para ver los combos"));
+		if (menu == 1) {
+			System.out.println("\n--------------- PRODUCTOS ---------------\n");
+			ArrayList<ProductoMenu> productosMenu = restaurante.getMenuBase();
+			for (int i = 0; i < productosMenu.size(); i++) {
+				ProductoMenu valor = productosMenu.get(i);
+				System.out.println((i+1) + ". " + valor.getNombre() + " ----------------- $" + valor.getPrecio());
+			}
+			int numProducto = Integer.parseInt(input("\nIngrese el numero del producto que desea agregar"));
+			ProductoMenu valor = productosMenu.get(numProducto-1);
+			pedido.agregarProducto(valor);
+			System.out.println("\nEl producto " + valor.getNombre() + " se agregó correctamente a su pedido.");
+			System.out.println("Para seguir agregando elementos seleccione la opción 2.");
+		}
+		else {
+			System.out.println("\n--------------- COMBOS ---------------\n");
+			ArrayList<Combo> combos = restaurante.getCombos();
+			for (int i = 0; i < combos.size(); i++) {
+				Combo valor = combos.get(i);
+				System.out.println((i+1) + ". " + valor.getNombre() + " ----------------- $" + valor.getPrecio());
+			}
+			int numCombo = Integer.parseInt(input("\nIngrese el numero del combo que desea agregar"));
+			Combo valor = combos.get(numCombo-1);
+			pedido.agregarProducto(valor);
+			System.out.println("\nEl combo " + valor.getNombre() + " se agregó correctamente a su pedido.");
+			System.out.println("Para seguir agregando elementos seleccione la opción 2.");
+		}
+		
 	}
 	
 	private void finalizar_pedido() {
