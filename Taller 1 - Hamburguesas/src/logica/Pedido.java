@@ -5,9 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import uniandes.dpoo.taller0.modelo.Genero;
-import uniandes.dpoo.taller0.modelo.Pais;
-import uniandes.dpoo.taller0.modelo.Participacion;
 
 /**
  * Esta clase encapsula la información sobre los pedidos y calcula algunas cosas
@@ -117,28 +114,26 @@ public class Pedido
 		}
 
 		/**
-		 * Compila la información de los eventos en los que ha participado un atleta.
+		 * Compila la información 
 		 * 
-		 * @return Una lista de mapas con la información de las participaciones del
-		 *         atleta. Cada registro queda en un mapa con tres llaves: "evento", que
-		 *         tiene asociado el nombre del evento en el que participó el atleta y
-		 *         "anio", que tiene asociado el año en el que el atleta participó en el
-		 *         evento; y "nombre" que tiene asociado el nombre del atleta.
+		 * @return Una lista de mapas con la información de los pedidos. 
+		 * 			Cada registro queda en un mapa con tres llaves: "id", 
+		 * 			"nombre" y "dirección.
 		 */
-		public List<Map<String, Object>> consultarParticipacionesAtleta()
+		public List<Map<String, Object>> consultarPedidos()
 		{
-			List<Map<String, Object>> participacionesAtleta = new ArrayList<Map<String, Object>>();
-			for (Participacion participacionAtleta : participaciones)
+			List<Map<String, Object>> pedidos = new ArrayList<Map<String, Object>>();
+			for (Pedidos pedidosNombre : pedidos)
 			{
-				int anio = participacionAtleta.darEvento().darAnio();
-				String evento = participacionAtleta.darEvento().darDeporte();
+				int id = pedidosNombre.darNombre().darDireccion();
+				String nombre = pedidosNombre.darNombre().darDireccion();
 				Map<String, Object> registro = new HashMap<String, Object>();
-				registro.put("evento", evento);
-				registro.put("anio", anio);
+				registro.put("id", id);
 				registro.put("nombre", nombre);
-				participacionesAtleta.add(registro);
+				registro.put("direccion", direccion);
+				pedidosNombre.add(registro);
 			}
-			return participacionesAtleta;
+			return pedidosNombre;
 		}
 	public Pedido(String nombreCliente, String direccionCliente) {
 		this.setNombreCliente(nombreCliente);
