@@ -3,36 +3,31 @@ package consola;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Scanner;
 
-import logica.Combo;
 import logica.Pedido;
-import logica.ProductoMenu;
 import logica.Restaurante;
 
 public class Aplicacion {
-	
+
 	private Restaurante restaurante = new Restaurante();
-	private Pedido pedido;
-	private Combo combo;
-	
+
 	public static void main(String[] args) throws IOException {
 		Aplicacion consola = new Aplicacion();
 		consola.cargarArchivos();
 		consola.ejecutarOpcion();
-		
+
 	}
-	
+
 	public void cargarArchivos() throws IOException {
-		restaurante.cargarInfoRestaurante
-				("C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\ingredientes.txt", 
+		restaurante.cargarInfoRestaurante(
+				"C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\ingredientes.txt",
 				"C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\menu.txt",
 				"C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\combos.txt");
 	}
 
 	public void ejecutarOpcion() {
-		
+
 		Scanner input = new Scanner(System.in);
 		boolean continuar = true;
 		while (continuar) {
@@ -49,11 +44,10 @@ public class Aplicacion {
 				else if (opcion_seleccionada == 4)
 					consultar_pedido();
 				else if (opcion_seleccionada == 5) {
-					
+
 					System.out.println("Saliendo de la aplicación...");
 					continuar = false;
-				} 
-				else
+				} else
 					System.out.println("Por favor seleccione una de las opciones");
 			} catch (NumberFormatException e) {
 				System.out.println("Debe seleccionar uno de los números de las opciones");
@@ -61,7 +55,7 @@ public class Aplicacion {
 			//input.close();
 		}
 	}
-	
+
 	public void mostrarMenu() {
 		System.out.println("\nOpciones ");
 		System.out.println("1. Iniciar un pedido");
@@ -70,50 +64,40 @@ public class Aplicacion {
 		System.out.println("4. Condsultar pedido");
 		System.out.println("5. Salir");
 		System.out.println("\nOpciones ");
-		
+
 	}
-	
+
 	private void iniciar_pedido() {
 		String nombreCliente = input("Por favor ingrese su nombre");
 		String direccionCliente = input("Por favor ingrese su direccion");
-		pedido = new Pedido(nombreCliente, direccionCliente);
-		System.out.println("\nSeleccione la opción 2 para ver el menu y agregar elementos al carrito.");
-	}
-	
-	private void agregar_elemento() {
-		System.out.println("\n-------------------- MENU --------------------\n");
+		Pedido pedido = new Pedido(nombreCliente, direccionCliente);
+		System.out.println("\n---------- MENU ----------\n");
 		System.out.println("1. Ver productos");
 		System.out.println("2. Ver combos\n");
-		int menu = Integer.parseInt(input("Ingrese 1 para ver los productos y 2 para ver los combos"));
-		if (menu == 1) {
-			System.out.println("\n--------------- PRODUCTOS ---------------\n");
-			ArrayList<ProductoMenu> productosMenu = restaurante.getMenuBase();
-			for (int i = 0; i < productosMenu.size(); i++) {
-				ProductoMenu valor = productosMenu.get(i);
-				System.out.println((i+1) + ". " + valor.getNombre() + " ----------------- $" + valor.getPrecio());
-			}
-			int numProducto = Integer.parseInt(input("\nIngrese el numero del producto que desea agregar"));
-			ProductoMenu valor = productosMenu.get(numProducto-1);
-			pedido.agregarProducto(valor);
-			System.out.println("\nEl producto " + valor.getNombre() + " se agregó correctamente a su pedido.");
-			System.out.println("Para seguir agregando elementos seleccione la opción 2.");
+		int productosCombo = Integer.parseInt(input("Ingrese 1 para ver los productos y 2 para ver los combos"));
+		if (productosCombo == 1) {
+			System.out.println("\n---------- PRODUCTOS ----------\n");
+			
+			int numProducto = Integer.parseInt(input("Ingrese el numero del producto que desea agregar"));
 		}
 		else {
-			System.out.println("\n--------------- COMBOS ---------------\n");
-			ArrayList<Combo> combos = restaurante.getCombos();
-			for (int i = 0; i < combos.size(); i++) {
-				Combo valor = combos.get(i);
-				System.out.println((i+1) + ". " + valor.getNombre() + " ----------------- $" + valor.getPrecio());
-			}
-			int numCombo = Integer.parseInt(input("\nIngrese el numero del combo que desea agregar"));
-			Combo valor = combos.get(numCombo-1);
-			pedido.agregarProducto(valor);
-			System.out.println("\nEl combo " + valor.getNombre() + " se agregó correctamente a su pedido.");
-			System.out.println("Para seguir agregando elementos seleccione la opción 2.");
+			System.out.println("\n---------- COMBOS ----------\n");
+			int numProducto = Integer.parseInt(input("Ingrese el numero del producto que desea agregar"));
 		}
 		
+		try (Scanner input = new Scanner(System.in)) {
+			System.out.println("\nIngrese su nombre: ");
+			String nombre = input.nextLine();
+			System.out.println("\nIngrese su dirección: ");
+			String direccion = input.nextLine();
+			restaurante.iniciarPedido(nombre, direccion);
+		}
 	}
-	
+
+	private void agregar_elemento() {
+
+	}
+
 	private void finalizar_pedido() {
 
 	}
