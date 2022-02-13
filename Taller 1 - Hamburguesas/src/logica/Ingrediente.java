@@ -1,7 +1,6 @@
 package logica;
 
 public class Ingrediente {
-
 	private String nombre;
 	private int costoAdicional;
 	
@@ -9,7 +8,6 @@ public class Ingrediente {
 		this.nombre = nombre;
 		this.costoAdicional = costoAdicional;
 	}
-
 	public String getNombre() {
 		return nombre;
 	}
