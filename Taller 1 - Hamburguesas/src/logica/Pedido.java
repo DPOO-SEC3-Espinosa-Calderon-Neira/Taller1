@@ -39,10 +39,7 @@ public class Pedido
 	 */
 	private String direccionCliente;
 	
-	/**
-	 * Una lista con las participaciones registradas para el atleta.
-	 */
-	private List<numeroPedidos> numeroPedidos;
+	public ArrayList<Producto> productosPedido;
 	
 	// ************************************************************************
 	// Constructores
@@ -59,10 +56,10 @@ public class Pedido
 	 */
 	public Pedido(int idPedido, String elNombre, String laDireccion)
 	{
-		this.pedido = idPedido;
-		this.nombre = elNombre;
-		this.direccion = laDireccion;
-		this.numeroPedidos = new ArrayList<>();
+		this.idPedido = idPedido;
+		this.nombreCliente = elNombre;
+		this.direccionCliente = laDireccion;
+		productosPedido = new ArrayList<Producto>();
 	}
 
 	// ************************************************************************
@@ -74,9 +71,9 @@ public class Pedido
 		 * 
 		 * @return id
 		 */
-		public String darIdPedido()
+		public int darIdPedido()
 		{
-			return nombre;
+			return idPedido;
 		}
 
 		/**
@@ -84,9 +81,9 @@ public class Pedido
 		 * 
 		 * @return nombre
 		 */
-		public Genero darNombre()
+		public String darNombre()
 		{
-			return genero;
+			return nombreCliente;
 		}
 
 		/**
@@ -94,9 +91,9 @@ public class Pedido
 		 * 
 		 * @return dirección
 		 */
-		public Pais darDireccion()
+		public String darDireccion()
 		{
-			return pais;
+			return direccionCliente;
 		}
 		
 		// ************************************************************************
@@ -108,10 +105,7 @@ public class Pedido
 		 * 
 		 * @param nuevoPedido 
 		 */
-		public void nuevoPedido(Pedido nuevoPedido)
-		{
-			pedido.add(nuevoPedido);
-		}
+		
 
 		/**
 		 * Compila la información 
@@ -135,6 +129,7 @@ public class Pedido
 			}
 			return pedidosNombre;
 		}
+		
 	public Pedido(String nombreCliente, String direccionCliente) {
 		this.setNombreCliente(nombreCliente);
 		this.direccionCliente = direccionCliente;
@@ -146,7 +141,7 @@ public class Pedido
 	}
 
 	public void agregarProducto(Producto nuevoItem) {
-		
+		productosPedido.add(nuevoItem);
 	}
 
 	private int getPrecioNetoPedido() {

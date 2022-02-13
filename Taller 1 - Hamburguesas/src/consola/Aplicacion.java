@@ -86,7 +86,7 @@ public class Aplicacion {
 		while (continuar) {
 			try {
 				int menu = Integer.parseInt(input("Ingresa 1 para ver los productos y 2 para ver los combos"));
-				//Agregar productos
+				//input = 1 -> Agregar productos
 				if (menu == 1) {
 					continuar = false;
 					System.out.println("\n--------------- PRODUCTOS ---------------\n");
@@ -110,7 +110,7 @@ public class Aplicacion {
 								while (continuar0) {
 									try {
 										int modificar = Integer.parseInt(input("\nPara agregar o quitar algún ingrediente ingresa 1. De lo contrario ingresa 0"));
-										//modificar
+										//input = 1 -> modificar
 										if (modificar == 1){
 											continuar0 = false;
 											boolean continuar1 = true;
@@ -128,6 +128,7 @@ public class Aplicacion {
 													while (continuar12) {
 														try {
 															int accionIngrediente = Integer.parseInt(input("\nIngresa 1 para agregar el ingrediente o 0 para quitarlo"));
+															//input = 1 -> agregar
 															if (accionIngrediente == 1) {
 																// ! ! ! ! 
 																
@@ -136,6 +137,7 @@ public class Aplicacion {
 																continuar1 = false;
 																continuar12 = false;
 															}
+															//input = 0 -> quitar
 															else if (accionIngrediente == 0) {
 																modificacion += " sin " + valorI.getNombre(); 
 																//quitar ingrediente
@@ -154,10 +156,12 @@ public class Aplicacion {
 													while (continuar2) {
 														try {
 															int seguir = Integer.parseInt(input("Para seguir agregando o quitando ingredientes del producto " + valorP.getNombre() + " ingresa 1. De lo contrario ingresa 0"));
+															//input = 1 -> seguir agregando
 															if (seguir == 1){
 																continuar1 = true;
 																continuar2 = false;
 															}
+															//input = 0 -> agregar el producto
 															else if (seguir == 0) {
 																//pedido.agregarProducto(valorP);
 																total += valorP.getPrecio();
@@ -181,7 +185,7 @@ public class Aplicacion {
 												}
 											}
 										}
-										//NO modificar
+										//input = 0 -> NO modificar
 										else if (modificar == 0) {
 											continuar0 = false;
 											pedido.agregarProducto(valorP);
@@ -206,7 +210,7 @@ public class Aplicacion {
 						}
 					}
 				}
-				//Agregar combo
+				//input = 2 -> Agregar combo
 				else if (menu == 2){
 					continuar = false;
 					System.out.println("\n--------------- COMBOS ---------------\n");
