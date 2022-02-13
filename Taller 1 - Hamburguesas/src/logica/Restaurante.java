@@ -10,7 +10,6 @@ public class Restaurante {
 
 	private Pedido pedido;
 	private Producto producto;
-	private Combo combo;
 	private Ingrediente ingrediente;
 	private ProductoMenu productoMenu;
 
