@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import logica.Combo;
 import logica.Ingrediente;
@@ -16,13 +15,14 @@ public class Aplicacion {
 	
 	private Restaurante restaurante = new Restaurante();
 	private Pedido pedido;
-	private Combo combo;
+	private double total = 0;
 	
 	public static void main(String[] args) throws IOException {
 		Aplicacion consola = new Aplicacion();
+		System.out.println("\n   ---------------------------       BIENVENIDO       ---------------------------   ");
+		System.out.println("\nCrea tu perdido a través de nuestra App y disfrutalo desde la comodidad de tu casa.");
 		consola.cargarArchivos();
 		consola.ejecutarOpcion();
-		
 	}
 	
 	public void cargarArchivos() throws IOException {
@@ -33,42 +33,45 @@ public class Aplicacion {
 	}
 
 	public void ejecutarOpcion() {
-		
 		boolean continuar = true;
-		mostrarMenu();
 		while (continuar) {
-			int opcion_seleccionada = Integer.parseInt(input("\nPor favor seleciona una opción"));
-			if (opcion_seleccionada == 1)
-				iniciar_pedido();
-			else if (opcion_seleccionada == 2)
-				agregar_elemento();
-			else if (opcion_seleccionada == 3)
-				finalizar_pedido();
-			else if (opcion_seleccionada == 4)
-				consultar_pedido();
-			else if (opcion_seleccionada == 5) {
-				System.out.println("\nSaliendo de la aplicación...");
-				continuar = false;
-			} 
-			else
+			try
+			{
+				mostrarMenu();
+				int opcion_seleccionada = Integer.parseInt(input("\nPor favor seleciona una opción"));
+				if (opcion_seleccionada == 1)
+					iniciar_pedido();
+				else if (opcion_seleccionada == 2)
+					agregar_elemento();
+				else if (opcion_seleccionada == 3)
+					finalizar_pedido();
+				else if (opcion_seleccionada == 4)
+					consultar_pedido();
+				else if (opcion_seleccionada == 5) {
+					System.out.println("\nSaliendo de la aplicación...");
+					continuar = false;
+				} 
+				else
+					System.out.println("\nDebes seleccionar uno de los números de las opciones");
+			}
+			catch (NumberFormatException e)
+			{
 				System.out.println("\nDebes seleccionar uno de los números de las opciones");
+			}
 		}
 	}
 	
 	public void mostrarMenu() {
-		System.out.println("\n   ---------------------------       BIENVENIDO       ---------------------------   ");
-		System.out.println("\nCrea tu perdido a través de nuestra App y disfrutalo desde la comodidad de tu casa.");
 		System.out.println("\nOpciones ");
 		System.out.println("1. Iniciar un pedido");
 		System.out.println("2. Agregar elemento ");
 		System.out.println("3. Finalizar pedido");
-		System.out.println("4. Condsultar pedido");
-		System.out.println("5. Salir");
-		
+		System.out.println("4. Consultar pedido");
+		System.out.println("5. Salir");	
 	}
 	
 	private void iniciar_pedido() {
-		String nombreCliente = input("Por favor ingresa su nombre");
+		String nombreCliente = input("\nPor favor ingresa su nombre");
 		String direccionCliente = input("Por favor ingresa su direccion");
 		pedido = new Pedido(nombreCliente, direccionCliente);
 		System.out.println("\nHola " + nombreCliente + ", selecciona la opción 2 para ver el menu y agregar elementos a tu pedido.");
@@ -121,6 +124,9 @@ public class Aplicacion {
 										int accionIngrediente = Integer.parseInt(input("\nIngresa 1 para agregar el ingrediente o 0 para quitarlo"));
 										if (accionIngrediente == 1) {
 											//agregar ingrediente y producto modificado
+											
+											//modificar precio
+											total += valorI.getCostoAdicional();
 											continuar1 = false;
 											continuar12 = false;
 										}
@@ -141,7 +147,9 @@ public class Aplicacion {
 										}
 										else if (seguir == 0) {
 											//pedido.agregarProducto(valorP);
+											total += valorP.getPrecio();
 											System.out.println("\nEl producto " + valorP.getNombre() + " se agregó correctamente a tu pedido.");
+											System.out.println("\nTotal: $" + total);
 											System.out.println("Para seguir agregando elementos selecciona la opción 2.");
 											continuar2 = false;
 										}
@@ -154,7 +162,9 @@ public class Aplicacion {
 							else if (modificar == 0) {
 								continuar0 = false;
 								pedido.agregarProducto(valorP);
+								total += valorP.getPrecio();
 								System.out.println("\nEl producto " + valorP.getNombre() + " se agregó correctamente a tu pedido.");
+								System.out.println("\nTotal: $" + total);
 								System.out.println("Para seguir agregando elementos selecciona la opción 2.");
 							}
 							else 
@@ -169,8 +179,8 @@ public class Aplicacion {
 				System.out.println("\n--------------- COMBOS ---------------\n");
 				ArrayList<Combo> combos = restaurante.getCombos();
 				for (int i = 0; i < combos.size(); i++) {
-					Combo valor = combos.get(i);
-					System.out.println((i+1) + ". " + valor.getNombre() + " ----------------- $" + valor.getPrecio());
+					Combo valorC = combos.get(i);
+					System.out.println((i+1) + ". " + valorC.getNombre() + " ----------------- $" + valorC.getPrecio());
 				}
 				boolean continuarC = true;
 				while (continuarC) {
@@ -179,9 +189,11 @@ public class Aplicacion {
 						System.out.println("\nPor favor ingresa una opción válida.\n");
 					else {
 						continuarC = false;
-						Combo valor = combos.get(numCombo-1);pedido.agregarProducto(valor);
-						pedido.agregarProducto(valor);
-						System.out.println("\nEl combo " + valor.getNombre() + " se agregó correctamente a tu pedido.");
+						Combo valorC = combos.get(numCombo-1);
+						pedido.agregarProducto(valorC);
+						total += valorC.getPrecio();
+						System.out.println("\nEl combo " + valorC.getNombre() + " se agregó correctamente a tu pedido.");
+						System.out.println("\nTotal: $" + total);
 						System.out.println("Para seguir agregando elementos selecciona la opción 2.");
 					}
 				}
