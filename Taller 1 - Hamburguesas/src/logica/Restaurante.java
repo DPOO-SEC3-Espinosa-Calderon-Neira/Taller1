@@ -15,7 +15,7 @@ public class Restaurante {
 
 	ArrayList<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
 	ArrayList<ProductoMenu> productosMenu = new ArrayList<ProductoMenu>();
-	ArrayList<Combo> combo = new ArrayList<Combo>();
+	ArrayList<Combo> combos = new ArrayList<Combo>();
 
 	public Restaurante() {
 
@@ -40,7 +40,11 @@ public class Restaurante {
 	public ArrayList<Ingrediente> getIngredientes() {
 		return ingredientes;
 	}
-
+	
+	public ArrayList<Combo> getCombos() {
+		return combos;
+	}
+	
 	public Producto getProducto() {
 		return producto;
 	}
@@ -81,7 +85,6 @@ public class Restaurante {
 
 	private void cargarMenu(String archivoMenu) throws IOException {
 
-		ArrayList<ProductoMenu> productosMenu = new ArrayList<ProductoMenu>();
 		File file = new File(archivoMenu);
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
@@ -107,18 +110,20 @@ public class Restaurante {
 
 		while ((line = br.readLine()) != null) {
 			String[] partes = line.split(";");
-			String nombreCombo = partes[0];
+			String nombreCombo = partes[0]+" ("+partes[2]+", "+partes[3]+", "+partes[4]+")";
+			
 			String descuentoStr = partes[1];
 			descuentoStr = descuentoStr.replace("%", "");
 			double descuento = Double.parseDouble(descuentoStr) / 100;
 			String productoMenu1 = partes[2];
 			String productoMenu2 = partes[3];
 			String productoMenu3 = partes[4];
+			
 			double precio = 0;
 
 			for (int i = 0; i < productosMenu.size(); i++) {
 				ProductoMenu valor = productosMenu.get(i);
-
+				
 				if (valor.getNombre().equals(productoMenu1)) {
 					precio += valor.getPrecio();
 				} else if (valor.getNombre().equals(productoMenu2)) {
@@ -129,8 +134,9 @@ public class Restaurante {
 			}
 
 			descuento = descuento * precio;
+			descuento = precio - descuento;
 			Combo combo_descuento = new Combo(descuento, nombreCombo);
-			combo.add(combo_descuento);
+			combos.add(combo_descuento);
 		}
 
 		br.close();
