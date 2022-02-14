@@ -7,17 +7,17 @@ import java.util.Map;
 
 
 /**
- * Esta clase encapsula la información sobre los pedidos y calcula algunas cosas
+ * Esta clase encapsula la informacion sobre los pedidos y calcula algunas cosas
  * sobre aquellos.
  */
-public class Pedido 
-{
+public class Pedido {
+	
 	// ************************************************************************
 	// Atributos
 	// ************************************************************************
 	
 	/**
-	 * El número de pedidos. Se asume que ...
+	 * El numero de pedidos. Se asume que ...
 	 */
 	private static int numeroPedidos;
 	
@@ -35,7 +35,7 @@ public class Pedido
 	
 	
 	/**
-	 * La dirección del cliente. 
+	 * La direccion del cliente. 
 	 */
 	private String direccionCliente;
 	
@@ -46,9 +46,9 @@ public class Pedido
 	// ************************************************************************
 
 	/**
-	 * Construye un nuevo pedido e inicializa sus atributos con la información de
-	 * los parámetros. La lista del pedido se inicializa como una lista
-	 * vacía.
+	 * Construye un nuevo pedido e inicializa sus atributos con la informacion de
+	 * los parametros. La lista del pedido se inicializa como una lista
+	 * vacia.
 	 * 
 	 * @param idPedidos El id del pedido.
 	 * @param elNombre El nombre del cliente.
@@ -63,7 +63,7 @@ public class Pedido
 	}
 
 	// ************************************************************************
-		// Métodos para consultar los atributos
+		// Metodos para consultar los atributos
 		// ************************************************************************
 
 		/**
@@ -87,9 +87,9 @@ public class Pedido
 		}
 
 		/**
-		 * Consulta la dirección
+		 * Consulta la direccion
 		 * 
-		 * @return dirección
+		 * @return direccion
 		 */
 		public String darDireccion()
 		{
@@ -97,7 +97,7 @@ public class Pedido
 		}
 		
 		// ************************************************************************
-		// Otros métodos
+		// Otros metodos
 		// ************************************************************************
 
 		/**
@@ -108,12 +108,13 @@ public class Pedido
 		
 
 		/**
-		 * Compila la información 
+		 * Compila la informacion 
 		 * 
-		 * @return Una lista de mapas con la información de los pedidos. 
+		 * @return Una lista de mapas con la informacion de los pedidos. 
 		 * 			Cada registro queda en un mapa con tres llaves: "id", 
-		 * 			"nombre" y "dirección.
+		 * 			"nombre" y "direccion.
 		 */
+		
 		public List<Map<String, Object>> consultarPedidos()
 		{
 			List<Map<String, Object>> pedidos = new ArrayList<Map<String, Object>>();
