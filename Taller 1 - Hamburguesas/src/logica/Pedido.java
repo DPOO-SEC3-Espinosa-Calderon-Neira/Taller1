@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,11 +17,16 @@ public class Pedido {
 	// ************************************************************************
 
 	private static int numeroPedidos;
-	private int idPedido;
+	public int idPedido = 0;
 	private String nombreCliente;
 	private String direccionCliente;
+	public double precioTotal = 0.0;
 
-	ArrayList<Producto> productosPedido = new ArrayList<Producto>();
+	ArrayList<HashMap<String, ArrayList<String>>> listaPedidos = new ArrayList<HashMap<String, ArrayList<String>>>();
+	HashMap<String, ArrayList<String>> mapPedido = new HashMap<>();
+	ArrayList<String> listaProductos = new ArrayList<String>();
+	ArrayList<String> listaPrecios = new ArrayList<String>();
+	
 
 	// ************************************************************************
 	// Constructores
@@ -29,6 +35,12 @@ public class Pedido {
 	public Pedido(String nombreCliente, String direccionCliente) {
 		this.nombreCliente = nombreCliente;
 		this.direccionCliente = direccionCliente;
+		listaPedidos.add(mapPedido);
+		ArrayList<String> nombreCliente2 = (ArrayList<String>) Arrays.asList(new String[] {nombreCliente});
+		ArrayList<String> direccionCliente2 = (ArrayList<String>) Arrays.asList(new String[] {direccionCliente});
+		mapPedido.put("Nombre cliente", nombreCliente2);
+		mapPedido.put("Direccion cliente", direccionCliente2);
+		
 	}
 
 	// ************************************************************************
@@ -68,23 +80,15 @@ public class Pedido {
 	 *         queda en un mapa con tres llaves: "id", "nombre" y "direccion.
 	 */
 
-	public List<Map<String, Object>> consultarPedidos() {
-		List<Map<String, Object>> pedidos = new ArrayList<Map<String, Object>>();
-		for (Pedidos pedidosNombre : pedidos) {
-			int id = pedidosNombre.darNombre().darDireccion();
-			String nombre = pedidosNombre.darNombre().darDireccion();
-			Map<String, Object> registro = new HashMap<String, Object>();
-			registro.put("id", id);
-			registro.put("nombre", nombre);
-			registro.put("direccion", direccion);
-			pedidosNombre.add(registro);
-		}
-		return pedidosNombre;
-	}
-
-
 	public void agregarProducto(Producto nuevoItem) {
-		productosPedido.add(nuevoItem);
+		
+		listaProductos.add(nuevoItem.getNombre());
+		double precioItem = nuevoItem.getPrecio();
+		String precioItemStr = Double.toString(precioItem);
+		listaPrecios.add(precioItemStr);
+		mapPedido.put("Productos", listaProductos);
+		mapPedido.put("Precios", listaPrecios);
+		this.precioTotal += nuevoItem.getPrecio();
 	}
 
 	private int getPrecioNetoPedido() {

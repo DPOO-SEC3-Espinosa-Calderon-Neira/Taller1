@@ -75,7 +75,9 @@ public class Aplicacion {
 		String nombreCliente = input("\nPor favor ingresa tu nombre");
 		String direccionCliente = input("Por favor ingresa tu direccion");
 		pedido = new Pedido(nombreCliente, direccionCliente);
-		System.out.println("\nHola " + nombreCliente + ", selecciona la opción 2 para ver el menu y agregar elementos a tu pedido.");
+		pedido.idPedido += 1;
+		System.out.println("\nHola " + nombreCliente + ", tu pedido es el número " + pedido.idPedido + ".");
+		System.out.println("Selecciona la opción 2 para ver el menu y agregar elementos a tu pedido.");
 	}
 	
 	private void agregar_elemento() {
