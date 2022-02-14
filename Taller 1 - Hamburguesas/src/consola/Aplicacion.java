@@ -9,14 +9,15 @@ import logica.Combo;
 import logica.Ingrediente;
 import logica.Pedido;
 import logica.ProductoMenu;
+import logica.ProductoAjustado;
 import logica.Restaurante;
 
 public class Aplicacion {
 	
 	private Restaurante restaurante = new Restaurante();
 	private Pedido pedido;
-	private double total = 0;
 	private String modificacion = "";
+	public ArrayList<Ingrediente> ingredientesAgregados = null;
 	
 	public static void main(String[] args) throws IOException {
 		Aplicacion consola = new Aplicacion();
@@ -132,10 +133,8 @@ public class Aplicacion {
 															int accionIngrediente = Integer.parseInt(input("\nIngresa 1 para agregar el ingrediente o 0 para quitarlo"));
 															//input = 1 -> agregar
 															if (accionIngrediente == 1) {
-																// ! ! ! ! 
-																
 																modificacion += " con " + valorI.getNombre();
-																total += valorI.getCostoAdicional();
+																ingredientesAgregados.add(valorI);
 																continuar1 = false;
 																continuar12 = false;
 															}
@@ -158,17 +157,17 @@ public class Aplicacion {
 													while (continuar2) {
 														try {
 															int seguir = Integer.parseInt(input("Para seguir agregando o quitando ingredientes del producto " + valorP.getNombre() + " ingresa 1. De lo contrario ingresa 0"));
-															//input = 1 -> seguir agregando
+															//input = 1 -> seguir modificando el producto
 															if (seguir == 1){
 																continuar1 = true;
 																continuar2 = false;
 															}
 															//input = 0 -> agregar el producto
 															else if (seguir == 0) {
-																//pedido.agregarProducto(valorP);
-																total += valorP.getPrecio();
+																ProductoAjustado valorPA = new ProductoAjustado(valorP);
+																pedido.agregarProducto(valorPA);
 																System.out.println("\nEl producto " + valorP.getNombre() + modificacion + " se agregó correctamente a tu pedido.");
-																System.out.println("\nTotal: $" + total);
+																System.out.println("\nTotal: $" + pedido.precioTotal);
 																System.out.println("Para seguir agregando elementos selecciona la opción 2.");
 																continuar2 = false;
 															}
@@ -191,9 +190,8 @@ public class Aplicacion {
 										else if (modificar == 0) {
 											continuar0 = false;
 											pedido.agregarProducto(valorP);
-											total += valorP.getPrecio();
 											System.out.println("\nEl producto " + valorP.getNombre() + " se agregó correctamente a tu pedido.");
-											System.out.println("\nTotal: $" + total);
+											System.out.println("\nTotal: $" + pedido.precioTotal);
 											System.out.println("Para seguir agregando elementos selecciona la opción 2.");
 										}
 										else 
@@ -230,9 +228,8 @@ public class Aplicacion {
 							continuarC = false;
 							Combo valorC = combos.get(numCombo-1);
 							pedido.agregarProducto(valorC);
-							total += valorC.getPrecio();
 							System.out.println("\nEl combo " + valorC.getNombre() + " se agregó correctamente a tu pedido.");
-							System.out.println("\nTotal: $" + total);
+							System.out.println("\nTotal: $" + pedido.precioTotal);
 							System.out.println("Para seguir agregando elementos selecciona la opción 2.");
 						}
 					}

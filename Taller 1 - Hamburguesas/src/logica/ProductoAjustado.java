@@ -1,8 +1,17 @@
 package logica;
 
+import consola.Aplicacion;
+
 public class ProductoAjustado implements Producto {
 	
+	private Aplicacion apliacion;
+	private double precio;
+	
 	public ProductoAjustado(ProductoMenu base) {
+		precio = base.getPrecio();
+		for (int i = 0; i < apliacion.ingredientesAgregados.size(); i++) {
+			precio += apliacion.ingredientesAgregados.get(i).getCostoAdicional();
+		}
 		
 	}
 	
@@ -17,8 +26,7 @@ public class ProductoAjustado implements Producto {
 	}
 	
 	public double getPrecio() {
-		return 0;
-		
+		return precio;
 	}
 	
 	public String generarTextoFactura() {
