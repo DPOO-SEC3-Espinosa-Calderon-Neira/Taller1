@@ -16,10 +16,6 @@ public class Restaurante {
 	ArrayList<ProductoMenu> productosMenu = new ArrayList<ProductoMenu>();
 	ArrayList<Combo> combos = new ArrayList<Combo>();
 
-	public Restaurante() {
-
-	}
-
 	public void iniciarPedido(String nombreCliente, String direccionCliente) {
 		pedido = new Pedido(nombreCliente, direccionCliente);
 	}

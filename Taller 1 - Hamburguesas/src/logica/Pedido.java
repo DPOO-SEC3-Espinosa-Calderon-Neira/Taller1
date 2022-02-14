@@ -26,21 +26,20 @@ public class Pedido {
 	HashMap<String, ArrayList<String>> mapPedido = new HashMap<>();
 	ArrayList<String> listaProductos = new ArrayList<String>();
 	ArrayList<String> listaPrecios = new ArrayList<String>();
-	
 
 	// ************************************************************************
 	// Constructores
 	// ************************************************************************
 
 	public Pedido(String nombreCliente, String direccionCliente) {
+
 		this.nombreCliente = nombreCliente;
 		this.direccionCliente = direccionCliente;
 		listaPedidos.add(mapPedido);
-		ArrayList<String> nombreCliente2 = (ArrayList<String>) Arrays.asList(new String[] {nombreCliente});
-		ArrayList<String> direccionCliente2 = (ArrayList<String>) Arrays.asList(new String[] {direccionCliente});
-		mapPedido.put("Nombre cliente", nombreCliente2);
-		mapPedido.put("Direccion cliente", direccionCliente2);
-		
+		ArrayList<String> listaCliente = (ArrayList<String>) Arrays.asList(new String[] {nombreCliente});
+		ArrayList<String> listaDireccion = (ArrayList<String>) Arrays.asList(new String[] {direccionCliente});
+		mapPedido.put("Nombre cliente", listaCliente);
+		mapPedido.put("Direccion cliente", listaDireccion);
 	}
 
 	// ************************************************************************
@@ -91,27 +90,32 @@ public class Pedido {
 		this.precioTotal += nuevoItem.getPrecio();
 	}
 
-	private int getPrecioNetoPedido() {
-		return idPedido;
-
+	private double getPrecioNetoPedido() {
+		return precioTotal;
 	}
 
-	private int getPrecioTotalPedido() {
-		return idPedido;
-
+	private double getPrecioTotalPedido() {
+		
+		double precioTotal = (getPrecioNetoPedido() * 0.19) + getPrecioNetoPedido();
+		return precioTotal;
 	}
 
-	private int getPrecioIVAPedido() {
-		return idPedido;
-
+	private double getPrecioIVAPedido() {
+		
+		double precioIva = getPrecioNetoPedido() * 0.19;
+		return precioIva;
 	}
 
 	private String generarTextoFactura() {
-		return direccionCliente;
-
+		
+		String neto = String.valueOf(getPrecioNetoPedido());
+		String total = String.valueOf(getPrecioTotalPedido());
+		String iva = String.valueOf(getPrecioIVAPedido());
+		String mensaje = "El valor neto de su pedido es: " + neto + ". El valor total de su pedido es: " + total + ". El IVA es su pedido es: " + iva;
+		return mensaje;
 	}
 
-	public void guardarFactura(String archivo) {
-
+	public String guardarFactura() {
+		return generarTextoFactura(); 
 	}
 }
