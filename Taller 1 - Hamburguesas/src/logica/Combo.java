@@ -21,17 +21,14 @@ public class Combo implements Producto {
 
 	public String getNombre() {
 		return nombreCombo;
-
 	}
 	
 	public int getPrecio() {
 		return descuento;
-
 	}
 	
 	public String generarTextoFactura() {
 		return nombreCombo;
-		
 	}
 
 	public double getDescuento() {

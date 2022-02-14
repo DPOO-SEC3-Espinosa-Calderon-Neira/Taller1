@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class Restaurante {
 
 	private Pedido pedido;
-	private Producto producto;
 	private Ingrediente ingrediente;
 	private ProductoMenu productoMenu;
 
@@ -17,12 +16,8 @@ public class Restaurante {
 	ArrayList<ProductoMenu> productosMenu = new ArrayList<ProductoMenu>();
 	ArrayList<Combo> combos = new ArrayList<Combo>();
 
-	public Restaurante() {
-
-	}
-
 	public void iniciarPedido(String nombreCliente, String direccionCliente) {
-		Pedido nuevoPedido = new Pedido(nombreCliente, direccionCliente);
+		pedido = new Pedido(nombreCliente, direccionCliente);
 	}
 
 	public void cerrarYGuardarPedido() {
@@ -43,10 +38,6 @@ public class Restaurante {
 	
 	public ArrayList<Combo> getCombos() {
 		return combos;
-	}
-	
-	public Producto getProducto() {
-		return producto;
 	}
 
 	public Ingrediente getIngrediente() {
