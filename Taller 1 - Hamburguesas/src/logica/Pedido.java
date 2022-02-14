@@ -22,8 +22,8 @@ public class Pedido {
 	private String direccionCliente;
 	public double precioTotal = 0.0;
 
-	ArrayList<HashMap<String, ArrayList<String>>> listaPedidos = new ArrayList<HashMap<String, ArrayList<String>>>();
-	HashMap<String, ArrayList<String>> mapPedido = new HashMap<>();
+	ArrayList listaPedidos = new ArrayList();
+	HashMap mapPedido = new HashMap();
 	ArrayList<String> listaProductos = new ArrayList<String>();
 	ArrayList<String> listaPrecios = new ArrayList<String>();
 
@@ -35,11 +35,9 @@ public class Pedido {
 
 		this.nombreCliente = nombreCliente;
 		this.direccionCliente = direccionCliente;
+		mapPedido.put("Nombre cliente", nombreCliente);
+		mapPedido.put("Direccion cliente", direccionCliente);
 		listaPedidos.add(mapPedido);
-		ArrayList<String> listaCliente = (ArrayList<String>) Arrays.asList(new String[] {nombreCliente});
-		ArrayList<String> listaDireccion = (ArrayList<String>) Arrays.asList(new String[] {direccionCliente});
-		mapPedido.put("Nombre cliente", listaCliente);
-		mapPedido.put("Direccion cliente", listaDireccion);
 	}
 
 	// ************************************************************************
