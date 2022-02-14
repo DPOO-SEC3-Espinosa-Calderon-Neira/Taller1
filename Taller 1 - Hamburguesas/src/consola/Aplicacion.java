@@ -17,7 +17,6 @@ public class Aplicacion {
 	private Restaurante restaurante = new Restaurante();
 	private Pedido pedido;
 	private String modificacion = "";
-	public ArrayList<Ingrediente> ingredientesAgregados = null;
 	
 	public static void main(String[] args) throws IOException {
 		Aplicacion consola = new Aplicacion();
@@ -126,6 +125,7 @@ public class Aplicacion {
 														System.out.println((i+1) + ". " + valorI.getNombre() + " ----------------- $" + valorI.getCostoAdicional());
 													}
 													int numIngrediente = Integer.parseInt(input("\nIngresa el numero del ingrediente que deseas agregar o quitar"));
+													//
 													Ingrediente valorI = ingredientes.get(numIngrediente-1);
 													boolean continuar12 = true;
 													while (continuar12) {
@@ -134,7 +134,8 @@ public class Aplicacion {
 															//input = 1 -> agregar
 															if (accionIngrediente == 1) {
 																modificacion += " con " + valorI.getNombre();
-																ingredientesAgregados.add(valorI);
+																ProductoAjustado productoAjustado = new ProductoAjustado(valorP);
+																productoAjustado.ingredientesAgregados.add(valorI);
 																continuar1 = false;
 																continuar12 = false;
 															}
@@ -166,7 +167,7 @@ public class Aplicacion {
 															else if (seguir == 0) {
 																ProductoAjustado valorPA = new ProductoAjustado(valorP);
 																pedido.agregarProducto(valorPA);
-																System.out.println("\nEl producto " + valorP.getNombre() + modificacion + " se agregó correctamente a tu pedido.");
+																System.out.println("\nEl producto " + valorPA.getNombre() + modificacion + " se agregó correctamente a tu pedido.");
 																System.out.println("\nTotal: $" + pedido.precioTotal);
 																System.out.println("Para seguir agregando elementos selecciona la opción 2.");
 																continuar2 = false;
@@ -228,7 +229,7 @@ public class Aplicacion {
 							continuarC = false;
 							Combo valorC = combos.get(numCombo-1);
 							pedido.agregarProducto(valorC);
-							System.out.println("\nEl combo " + valorC.getNombre() + " se agregó correctamente a tu pedido.");
+							System.out.println("\nEl " + valorC.getNombre() + " se agregó correctamente a tu pedido.");
 							System.out.println("\nTotal: $" + pedido.precioTotal);
 							System.out.println("Para seguir agregando elementos selecciona la opción 2.");
 						}

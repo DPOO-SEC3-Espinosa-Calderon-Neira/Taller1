@@ -85,7 +85,8 @@ public class Pedido {
 		listaPrecios.add(precioItemStr);
 		mapPedido.put("Productos", listaProductos);
 		mapPedido.put("Precios", listaPrecios);
-		this.precioTotal += nuevoItem.getPrecio();
+		this.precioTotal += precioItem;
+		System.out.println("precio ajustado Pedido: " + precioItem);
 	}
 
 	private double getPrecioNetoPedido() {

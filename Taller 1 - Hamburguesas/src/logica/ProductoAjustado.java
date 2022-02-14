@@ -1,16 +1,22 @@
 package logica;
 
+import java.util.ArrayList;
+
 import consola.Aplicacion;
 
 public class ProductoAjustado implements Producto {
 	
-	private Aplicacion apliacion;
-	private double precio;
+	private Aplicacion aplicacion;
+	private double precio = 0.0;
+	//
+	public ArrayList<Ingrediente> ingredientesAgregados = new ArrayList<Ingrediente>();
 	
 	public ProductoAjustado(ProductoMenu base) {
 		precio = base.getPrecio();
-		for (int i = 0; i < apliacion.ingredientesAgregados.size(); i++) {
-			precio += apliacion.ingredientesAgregados.get(i).getCostoAdicional();
+		System.out.println("precio ajustado: " + precio);
+		for (int i = 0; i < ingredientesAgregados.size(); i++) {
+			precio += ingredientesAgregados.get(i).getCostoAdicional();
+			System.out.println("precio ajustado: " + precio);
 		}
 		
 	}
