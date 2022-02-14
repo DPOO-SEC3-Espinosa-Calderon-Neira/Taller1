@@ -116,22 +116,19 @@ public class Pedido
 		/**
 		 * Compila la información 
 		 * 
-		 * @return Una lista de mapas con la información de los pedidos. 
+		 * @return Una mapa con la información de los pedidos. 
 		 * 			Cada registro queda en un mapa con tres llaves: "id", 
 		 * 			"nombre" y "dirección.
 		 */
-		public List<Map<String, Object>> consultarPedidos()
+		public HashMap<String, Producto>> consultarPedidos()
 		{
-			List<Map<String, Object>> pedidos = new ArrayList<Map<String, Object>>();
+			HashMap<String, Producto>> infoPedido = new HashMap<String, Producto>>();
 			for (Pedidos pedidosNombre : pedidos)
 			{
-				int id = pedidosNombre.darNombre().darDireccion();
-				String nombre = pedidosNombre.darNombre().darDireccion();
-				Map<String, Object> registro = new HashMap<String, Object>();
-				registro.put("id", id);
-				registro.put("nombre", nombre);
-				registro.put("direccion", direccion);
-				pedidosNombre.add(registro);
+				infoPedido.put("id", id);
+				infoPedido.put("nombre", nombre);
+				infoPedido.put("direccion", direccion);
+				pedidosNombre.add(infoPedido);
 			}
 			return pedidosNombre;
 		}

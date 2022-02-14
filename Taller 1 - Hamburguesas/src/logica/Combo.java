@@ -24,7 +24,7 @@ public class Combo implements Producto {
 
 	}
 	
-	public double getPrecio() {
+	public int getPrecio() {
 		return descuento;
 
 	}
