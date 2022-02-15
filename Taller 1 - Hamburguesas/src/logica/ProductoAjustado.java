@@ -33,6 +33,5 @@ public class ProductoAjustado implements Producto {
 	
 	public String generarTextoFactura() {
 		return null;
-		
 	}
 }

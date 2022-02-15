@@ -116,6 +116,7 @@ public class Pedido {
 	}
 
 	public String guardarFactura(String factura) {
+		String mensaje = generarTextoFactura();
 		ArrayList<String> facturas = new ArrayList<String>();
 		facturas.add(mensaje);
 		return generarTextoFactura(); 

@@ -28,17 +28,17 @@ public class Aplicacion {
 	}
 	
 	public void cargarArchivos() throws IOException {
-		/*
+		
 		restaurante.cargarInfoRestaurante("C:\\Users\\neira\\Desktop\\Eclipse\\Taller1\\Taller 1 - Hamburguesas\\data\\ingredientes.txt",
 				"C:\\Users\\neira\\Desktop\\Eclipse\\Taller1\\Taller 1 - Hamburguesas\\data\\menu.txt", 
 				"C:\\Users\\neira\\Desktop\\Eclipse\\Taller1\\Taller 1 - Hamburguesas\\data\\combos.txt");
 		
-    */
+    /*
 		restaurante.cargarInfoRestaurante
 		("./data/ingredientes.txt", 
 				"./data//menu.txt",
 				"./data/combos.txt");
-	
+	*/
 	}
 
 	public void ejecutarOpcion() {
