@@ -11,11 +11,7 @@ public class ProductoAjustado implements Producto {
 	
 	public ProductoAjustado(ProductoMenu base) {
 		precio = base.getPrecio();
-		System.out.println("precio ajustado: " + precio);
-		for (int i = 0; i < ingredientesAgregados.size(); i++) {
-			precio += ingredientesAgregados.get(i).getCostoAdicional();
-			System.out.println("precio ajustado: " + precio);
-		}
+		
 	}
 	
 	/*
@@ -29,6 +25,9 @@ public class ProductoAjustado implements Producto {
 	}
 	
 	public double getPrecio() {
+		for (int i = 0; i < ingredientesAgregados.size(); i++) {
+			precio += ingredientesAgregados.get(i).getCostoAdicional();
+		}
 		return precio;
 	}
 	

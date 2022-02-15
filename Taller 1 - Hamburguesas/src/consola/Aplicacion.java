@@ -28,17 +28,17 @@ public class Aplicacion {
 	}
 	
 	public void cargarArchivos() throws IOException {
-		
+		/*
 		restaurante.cargarInfoRestaurante("C:\\Users\\neira\\Desktop\\Eclipse\\Taller1\\Taller 1 - Hamburguesas\\data\\ingredientes.txt",
 				"C:\\Users\\neira\\Desktop\\Eclipse\\Taller1\\Taller 1 - Hamburguesas\\data\\menu.txt", 
 				"C:\\Users\\neira\\Desktop\\Eclipse\\Taller1\\Taller 1 - Hamburguesas\\data\\combos.txt");
 		
-		/*
+    */
 		restaurante.cargarInfoRestaurante
 				("C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\ingredientes.txt", 
 				"C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\menu.txt",
 				"C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\combos.txt");
-	*/
+	
 	}
 
 	public void ejecutarOpcion() {
@@ -117,11 +117,13 @@ public class Aplicacion {
 								
 								//Agregar o quitar ingrediente
 								boolean continuar0 = true;
+								
 								while (continuar0) {
 									try {
 										int modificar = Integer.parseInt(input("\nPara agregar o quitar algún ingrediente ingresa 1. De lo contrario ingresa 0"));
 										//input = 1 -> modificar
 										if (modificar == 1){
+											ProductoAjustado valorPA = new ProductoAjustado(valorP);
 											continuar0 = false;
 											boolean continuar1 = true;
 											while (continuar1) {
@@ -133,7 +135,7 @@ public class Aplicacion {
 														System.out.println((i+1) + ". " + valorI.getNombre() + " ----------------- $" + valorI.getCostoAdicional());
 													}
 													int numIngrediente = Integer.parseInt(input("\nIngresa el numero del ingrediente que deseas agregar o quitar"));
-													//
+													// FALTA QUE NO PUEDA PONER UN NUMERO QUE NO ESTE EN LA LISTA
 													Ingrediente valorI = ingredientes.get(numIngrediente-1);
 													boolean continuar12 = true;
 													while (continuar12) {
@@ -142,8 +144,8 @@ public class Aplicacion {
 															//input = 1 -> agregar
 															if (accionIngrediente == 1) {
 																modificacion += " con " + valorI.getNombre();
-																ProductoAjustado productoAjustado = new ProductoAjustado(valorP);
-																productoAjustado.ingredientesAgregados.add(valorI);
+																
+																valorPA.ingredientesAgregados.add(valorI);
 																continuar1 = false;
 																continuar12 = false;
 															}
@@ -173,7 +175,7 @@ public class Aplicacion {
 															}
 															//input = 0 -> agregar el producto
 															else if (seguir == 0) {
-																ProductoAjustado valorPA = new ProductoAjustado(valorP);
+																
 																pedido.agregarProducto(valorPA);
 																System.out.println("\nEl producto " + valorPA.getNombre() + modificacion + " se agregó correctamente a tu pedido.");
 																System.out.println("\nTotal: $" + pedido.precioTotal);
