@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Restaurante {
 
@@ -20,12 +21,12 @@ public class Restaurante {
 		pedido = new Pedido(nombreCliente, direccionCliente);
 	}
 
-	public void cerrarYGuardarPedido() {
-
+	public String cerrarYGuardarPedido() {
+		return pedido.guardarFactura();
 	}
 
-	public Pedido getPedidoEnCurso() {
-		return pedido;
+	public HashMap<String, ArrayList<String>> getPedidoEnCurso(int id) {
+		return pedido.listaPedidos.get(id);
 	}
 
 	public ArrayList<ProductoMenu> getMenuBase() {

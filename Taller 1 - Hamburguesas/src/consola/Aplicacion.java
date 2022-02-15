@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import logica.Combo;
 import logica.Ingrediente;
@@ -27,10 +28,17 @@ public class Aplicacion {
 	}
 	
 	public void cargarArchivos() throws IOException {
+		
+		restaurante.cargarInfoRestaurante("C:\\Users\\neira\\Desktop\\Eclipse\\Taller1\\Taller 1 - Hamburguesas\\data\\ingredientes.txt",
+				"C:\\Users\\neira\\Desktop\\Eclipse\\Taller1\\Taller 1 - Hamburguesas\\data\\menu.txt", 
+				"C:\\Users\\neira\\Desktop\\Eclipse\\Taller1\\Taller 1 - Hamburguesas\\data\\combos.txt");
+		
+		/*
 		restaurante.cargarInfoRestaurante
 				("C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\ingredientes.txt", 
 				"C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\menu.txt",
 				"C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\combos.txt");
+	*/
 	}
 
 	public void ejecutarOpcion() {
@@ -246,11 +254,20 @@ public class Aplicacion {
 	}
 	
 	private void finalizar_pedido() {
-
+		restaurante.cerrarYGuardarPedido();
+		System.out.println("Gracias por comprar con nosotros.");
 	}
 
 	private void consultar_pedido() {
-
+		String id_string = input("Ingrese el id de su pedido: ");
+		int id = Integer.parseInt(id_string);
+		HashMap<String, ArrayList<String>> pedido = restaurante.getPedidoEnCurso(id);
+		ArrayList<String> nombre = pedido.get("Nombre cliente");
+		System.out.println(nombre);
+		ArrayList<String> direccion = pedido.get("Direccion cliente");
+		System.out.println(direccion);
+		ArrayList<String> productos = pedido.get("Productos");
+		System.out.println(productos);
 	}
 	
 	public String input(String mensaje)
