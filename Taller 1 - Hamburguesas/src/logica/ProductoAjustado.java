@@ -2,8 +2,6 @@ package logica;
 
 import java.util.ArrayList;
 
-import consola.Aplicacion;
-
 public class ProductoAjustado implements Producto {
 	
 	private double precio = 0.0;
