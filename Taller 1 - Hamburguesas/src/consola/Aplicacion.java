@@ -22,7 +22,7 @@ public class Aplicacion {
 	public static void main(String[] args) throws IOException {
 		Aplicacion consola = new Aplicacion();
 		System.out.println("\n   ---------------------------       BIENVENIDO       ---------------------------   ");
-		System.out.println("\nCrea tu perdido a través de nuestra App y disfrutalo desde la comodidad de tu casa.");
+		System.out.println("\nCrea tu perdido a travï¿½s de nuestra App y disfrutalo desde la comodidad de tu casa.");
 		consola.cargarArchivos();
 		consola.ejecutarOpcion();
 	}
@@ -35,9 +35,9 @@ public class Aplicacion {
 		
     */
 		restaurante.cargarInfoRestaurante
-				("C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\ingredientes.txt", 
-				"C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\menu.txt",
-				"C:\\Users\\danie\\OneDrive\\Documentos\\GitHub\\Taller1\\Taller 1 - Hamburguesas\\data\\combos.txt");
+				("./data/ingredientes.txt", 
+				"./data//menu.txt",
+				"./data/combos.txt");
 	
 	}
 
@@ -47,7 +47,7 @@ public class Aplicacion {
 			try
 			{
 				mostrarMenu();
-				int opcion_seleccionada = Integer.parseInt(input("\nPor favor seleciona una opción"));
+				int opcion_seleccionada = Integer.parseInt(input("\nPor favor seleciona una opciï¿½n"));
 				if (opcion_seleccionada == 1)
 					iniciar_pedido();
 				else if (opcion_seleccionada == 2)
@@ -57,15 +57,15 @@ public class Aplicacion {
 				else if (opcion_seleccionada == 4)
 					consultar_pedido();
 				else if (opcion_seleccionada == 5) {
-					System.out.println("\nSaliendo de la aplicación...");
+					System.out.println("\nSaliendo de la aplicaciï¿½n...");
 					continuar = false;
 				} 
 				else
-					System.out.println("\nDebes seleccionar uno de los números de las opciones");
+					System.out.println("\nDebes seleccionar uno de los nï¿½meros de las opciones");
 			}
 			catch (NumberFormatException e)
 			{
-				System.out.println("\nDebes seleccionar uno de los números de las opciones");
+				System.out.println("\nDebes seleccionar uno de los nï¿½meros de las opciones");
 			}
 		}
 	}
@@ -84,8 +84,8 @@ public class Aplicacion {
 		String direccionCliente = input("Por favor ingresa tu direccion");
 		pedido = new Pedido(nombreCliente, direccionCliente);
 		pedido.idPedido += 1;
-		System.out.println("\nHola " + nombreCliente + ", tu pedido es el número " + pedido.idPedido + ".");
-		System.out.println("Selecciona la opción 2 para ver el menu y agregar elementos a tu pedido.");
+		System.out.println("\nHola " + nombreCliente + ", tu pedido es el nï¿½mero " + pedido.idPedido + ".");
+		System.out.println("Selecciona la opciï¿½n 2 para ver el menu y agregar elementos a tu pedido.");
 	}
 	
 	private void agregar_elemento() {
@@ -110,7 +110,7 @@ public class Aplicacion {
 						try {
 							int numProducto = Integer.parseInt(input("\nIngresa el numero del producto que deseas agregar"));
 							if (numProducto > productosMenu.size())
-								System.out.println("\nPor favor ingresa una opción válida.\n");
+								System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
 							else {
 								continuarP = false;
 								ProductoMenu valorP = productosMenu.get(numProducto-1);
@@ -120,7 +120,7 @@ public class Aplicacion {
 								
 								while (continuar0) {
 									try {
-										int modificar = Integer.parseInt(input("\nPara agregar o quitar algún ingrediente ingresa 1. De lo contrario ingresa 0"));
+										int modificar = Integer.parseInt(input("\nPara agregar o quitar algï¿½n ingrediente ingresa 1. De lo contrario ingresa 0"));
 										//input = 1 -> modificar
 										if (modificar == 1){
 											ProductoAjustado valorPA = new ProductoAjustado(valorP);
@@ -157,11 +157,11 @@ public class Aplicacion {
 																continuar12 = false;
 															}
 															else
-																System.out.println("\nPor favor ingresa una opción válida.\n");
+																System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
 														}
 														catch (NumberFormatException e)
 														{
-															System.out.println("\nPor favor ingresa una opción válida.\n");
+															System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
 														}
 													}
 													boolean continuar2 = true;
@@ -177,23 +177,23 @@ public class Aplicacion {
 															else if (seguir == 0) {
 																
 																pedido.agregarProducto(valorPA);
-																System.out.println("\nEl producto " + valorPA.getNombre() + modificacion + " se agregó correctamente a tu pedido.");
+																System.out.println("\nEl producto " + valorPA.getNombre() + modificacion + " se agregï¿½ correctamente a tu pedido.");
 																System.out.println("\nTotal: $" + pedido.precioTotal);
-																System.out.println("Para seguir agregando elementos selecciona la opción 2.");
+																System.out.println("Para seguir agregando elementos selecciona la opciï¿½n 2.");
 																continuar2 = false;
 															}
 															else
-																System.out.println("\nPor favor ingresa una opción válida.\n");
+																System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
 														}
 														catch (NumberFormatException e)
 														{
-															System.out.println("\nPor favor ingresa una opción válida.\n");
+															System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
 														}
 													}
 												}
 												catch (NumberFormatException e)
 												{
-													System.out.println("\nPor favor ingresa una opción válida.\n");
+													System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
 												}
 											}
 										}
@@ -201,23 +201,23 @@ public class Aplicacion {
 										else if (modificar == 0) {
 											continuar0 = false;
 											pedido.agregarProducto(valorP);
-											System.out.println("\nEl producto " + valorP.getNombre() + " se agregó correctamente a tu pedido.");
+											System.out.println("\nEl producto " + valorP.getNombre() + " se agregï¿½ correctamente a tu pedido.");
 											System.out.println("\nTotal: $" + pedido.precioTotal);
-											System.out.println("Para seguir agregando elementos selecciona la opción 2.");
+											System.out.println("Para seguir agregando elementos selecciona la opciï¿½n 2.");
 										}
 										else 
-											System.out.println("\nPor favor ingresa una opción válida.\n");
+											System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
 									}
 									catch (NumberFormatException e)
 									{
-										System.out.println("\nPor favor ingresa una opción válida.\n");
+										System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
 									}
 								}
 							}
 						}
 						catch (NumberFormatException e)
 						{
-							System.out.println("\nPor favor ingresa una opción válida.\n");
+							System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
 						}
 					}
 				}
@@ -234,23 +234,23 @@ public class Aplicacion {
 					while (continuarC) {
 						int numCombo = Integer.parseInt(input("\nIngresa el numero del combo que deseas agregar"));
 						if (numCombo > combos.size())
-							System.out.println("\nPor favor ingresa una opción válida.\n");
+							System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
 						else {
 							continuarC = false;
 							Combo valorC = combos.get(numCombo-1);
 							pedido.agregarProducto(valorC);
-							System.out.println("\nEl " + valorC.getNombre() + " se agregó correctamente a tu pedido.");
+							System.out.println("\nEl " + valorC.getNombre() + " se agregï¿½ correctamente a tu pedido.");
 							System.out.println("\nTotal: $" + pedido.precioTotal);
-							System.out.println("Para seguir agregando elementos selecciona la opción 2.");
+							System.out.println("Para seguir agregando elementos selecciona la opciï¿½n 2.");
 						}
 					}
 				}
 				else
-					System.out.println("\nPor favor ingresa una opción válida.\n");
+					System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
 			}
 			catch (NumberFormatException e)
 			{
-				System.out.println("\nPor favor ingresa una opción válida.\n");
+				System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
 			}
 		}
 	}
