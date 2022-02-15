@@ -23,7 +23,7 @@ public class Combo implements Producto {
 		return nombreCombo;
 	}
 	
-	public int getPrecio() {
+	public double getPrecio() {
 		return descuento;
 	}
 	
