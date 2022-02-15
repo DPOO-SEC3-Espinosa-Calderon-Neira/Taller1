@@ -1,10 +1,7 @@
 package logica;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Esta clase encapsula la informacion sobre los pedidos y calcula algunas cosas
@@ -22,8 +19,8 @@ public class Pedido {
 	private String direccionCliente;
 	public double precioTotal = 0.0;
 
-	ArrayList listaPedidos = new ArrayList();
-	HashMap mapPedido = new HashMap();
+	ArrayList<HashMap<String, ArrayList<String>>> listaPedidos = new ArrayList<HashMap<String, ArrayList<String>>>();
+	HashMap<String, ArrayList<String>> mapPedido = new HashMap<String, ArrayList<String>>();
 	ArrayList<String> listaProductos = new ArrayList<String>();
 	ArrayList<String> listaPrecios = new ArrayList<String>();
 
@@ -35,8 +32,12 @@ public class Pedido {
 
 		this.nombreCliente = nombreCliente;
 		this.direccionCliente = direccionCliente;
-		mapPedido.put("Nombre cliente", nombreCliente);
-		mapPedido.put("Direccion cliente", direccionCliente);
+		ArrayList<String> nombre = new ArrayList<String>();
+		ArrayList<String> direccion = new ArrayList<String>();
+		nombre.add(nombreCliente);
+		direccion.add(direccionCliente);
+		mapPedido.put("Nombre cliente", nombre);
+		mapPedido.put("Direccion cliente", direccion);
 		listaPedidos.add(mapPedido);
 	}
 

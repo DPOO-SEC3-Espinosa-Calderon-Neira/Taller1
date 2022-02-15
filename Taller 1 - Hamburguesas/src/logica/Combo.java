@@ -15,8 +15,8 @@ public class Combo implements Producto {
 	}
 	
 	/*
-	 * Los siguientes m�todos son la implementaci�n de los m�todos
-	 * en la clase Combo.
+	 * Los siguientes metodos son la implementacion de los metodos
+	 * en la clase Producto.
 	 */
 
 	public String getNombre() {
