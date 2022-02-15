@@ -14,7 +14,7 @@ public class Pedido {
 	// ************************************************************************
 
 	private static int numeroPedidos;
-	public int idPedido = 0;
+	public int idPedido = -1;
 	private String nombreCliente;
 	private String direccionCliente;
 	public double precioTotal = 0.0;
@@ -117,8 +117,6 @@ public class Pedido {
 
 	public String guardarFactura() {
 		String mensaje = generarTextoFactura();
-		ArrayList<String> facturas = new ArrayList<String>();
-		facturas.add(mensaje);
-		return generarTextoFactura(); 
+		return mensaje; 
 	}
 }

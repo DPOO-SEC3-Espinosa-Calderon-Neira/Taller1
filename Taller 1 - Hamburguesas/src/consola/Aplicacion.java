@@ -82,7 +82,7 @@ public class Aplicacion {
 	private void iniciar_pedido() {
 		String nombreCliente = input("\nPor favor ingresa tu nombre");
 		String direccionCliente = input("Por favor ingresa tu direccion");
-		pedido = new Pedido(nombreCliente, direccionCliente);
+		this.pedido = restaurante.iniciarPedido(nombreCliente, direccionCliente);
 		pedido.idPedido += 1;
 		System.out.println("\nHola " + nombreCliente + ", tu pedido es el n�mero " + pedido.idPedido + ".");
 		System.out.println("Selecciona la opci�n 2 para ver el menu y agregar elementos a tu pedido.");
@@ -256,7 +256,7 @@ public class Aplicacion {
 	}
 	
 	private void finalizar_pedido() {
-		restaurante.cerrarYGuardarPedido();
+		System.out.println(restaurante.cerrarYGuardarPedido());
 		System.out.println("Gracias por comprar con nosotros.");
 	}
 

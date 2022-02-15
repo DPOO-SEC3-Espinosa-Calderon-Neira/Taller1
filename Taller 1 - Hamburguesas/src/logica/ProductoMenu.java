@@ -1,5 +1,6 @@
 package logica;
 
+
 public class ProductoMenu implements Producto {
 	
 	private String nombre;

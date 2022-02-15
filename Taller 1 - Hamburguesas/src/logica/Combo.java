@@ -10,11 +10,6 @@ public class Combo implements Producto {
 		this.nombreCombo = nombreCombo;
 	}
 	
-	
-	public void agregarItemACombo(Producto itemCombo) {
-		
-	}
-	
 	/*
 	 * Los siguientes metodos son la implementacion de los metodos
 	 * en la clase Producto.
