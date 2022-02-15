@@ -6,9 +6,8 @@ import consola.Aplicacion;
 
 public class ProductoAjustado implements Producto {
 	
-	private Aplicacion aplicacion;
 	private double precio = 0.0;
-	//
+	private String nombre;
 	public ArrayList<Ingrediente> ingredientesAgregados = new ArrayList<Ingrediente>();
 	
 	public ProductoAjustado(ProductoMenu base) {
@@ -22,12 +21,12 @@ public class ProductoAjustado implements Producto {
 	}
 	
 	/*
-	 * Los siguientes m�todos son la implementaci�n de los m�todos
+	 * Los siguientes metodos son la implementacion de los metodos
 	 * en la clase Producto.
 	 */
 	
 	public String getNombre() {
-		return null;
+		return nombre;
 		
 	}
 	
