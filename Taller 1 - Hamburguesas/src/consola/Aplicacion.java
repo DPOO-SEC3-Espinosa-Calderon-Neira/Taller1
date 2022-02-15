@@ -177,7 +177,7 @@ public class Aplicacion {
 															else if (seguir == 0) {
 																
 																pedido.agregarProducto(valorPA);
-																System.out.println("\nEl producto " + valorPA.getNombre() + modificacion + " se agregó correctamente a tu pedido.");
+																System.out.println("\nEl producto " + valorP.getNombre() + modificacion + " se agregó correctamente a tu pedido.");
 																System.out.println("\nTotal: $" + pedido.precioTotal);
 																System.out.println("Para seguir agregando elementos selecciona la opción 2.");
 																continuar2 = false;
