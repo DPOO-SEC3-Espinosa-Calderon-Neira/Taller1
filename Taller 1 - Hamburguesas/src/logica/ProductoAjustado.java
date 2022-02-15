@@ -16,7 +16,6 @@ public class ProductoAjustado implements Producto {
 			precio += ingredientesAgregados.get(i).getCostoAdicional();
 			System.out.println("precio ajustado: " + precio);
 		}
-		
 	}
 	
 	/*
