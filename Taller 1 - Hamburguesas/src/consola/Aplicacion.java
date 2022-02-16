@@ -1,8 +1,11 @@
 package consola;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -43,7 +46,7 @@ public class Aplicacion {
 
 	}
 
-	public void ejecutarOpcion() {
+	public void ejecutarOpcion() throws FileNotFoundException, UnsupportedEncodingException {
 		boolean iniciado = false;
 		boolean agregado = false;
 		boolean finalizado = false;
@@ -310,9 +313,14 @@ public class Aplicacion {
 		}
 	}
 	
-	private void finalizar_pedido() {
+	private void finalizar_pedido() throws FileNotFoundException, UnsupportedEncodingException {
 		System.out.println(restaurante.cerrarYGuardarPedido());
 		System.out.println("Gracias por comprar con nosotros.");
+		int id = pedido.getIdPedido();
+		PrintWriter writer = new PrintWriter("data/facturas/" + String.valueOf(id), "UTF-8");
+		writer.println(listaPedidos.get(id).get("Nombre cliente"));
+		writer.println(listaPedidos.get(id).get("Direccion cliente"));
+		writer.close();
 	}
 
 	private void consultar_pedido() 
