@@ -192,17 +192,14 @@ public class Aplicacion {
 																		int accionIngrediente = Integer.parseInt(input("\nIngresa 1 para agregar el ingrediente o 0 para quitarlo"));
 																		//input = 1 -> agregar
 																		if (accionIngrediente == 1) {
-																			modificacion += " con " + valorI.getNombre();
-																			
+																			ProductoAjustado.nombre += " con " + valorI.getNombre();
 																			valorPA.ingredientesAgregados.add(valorI);
 																			continuar1 = false;
 																			continuar12 = false;
 																		}
 																		//input = 0 -> quitar
 																		else if (accionIngrediente == 0) {
-																			
-																			modificacion += " sin " + valorI.getNombre(); 
-																			//quitar ingrediente
+																			ProductoAjustado.nombre += " sin " + valorI.getNombre();
 																			continuar1 = false;
 																			continuar12 = false;
 																		}
@@ -227,7 +224,7 @@ public class Aplicacion {
 																		else if (seguir == 0) {
 																			
 																			pedido.agregarProducto(valorPA);
-																			System.out.println("\nEl producto " + valorP.getNombre() + modificacion + " se agrego correctamente a tu pedido.");
+																			System.out.println("\nEl producto " + valorPA.getNombre() + modificacion + " se agrego correctamente a tu pedido.");
 																			System.out.println("\nTotal: $" + pedido.precioTotal);
 																			System.out.println("Para seguir agregando elementos selecciona la opcion 2.");
 																			continuar2 = false;

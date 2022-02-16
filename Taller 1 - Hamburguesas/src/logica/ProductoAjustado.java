@@ -5,12 +5,13 @@ import java.util.ArrayList;
 public class ProductoAjustado implements Producto {
 	
 	private double precio;
-	private String nombre;
+	public static String nombre;
 
 	public ArrayList<Ingrediente> ingredientesAgregados = new ArrayList<Ingrediente>();
 	
 	public ProductoAjustado(ProductoMenu base) {
 		precio = base.getPrecio();
+		nombre = base.getNombre();
 	}
 	
 	/*
