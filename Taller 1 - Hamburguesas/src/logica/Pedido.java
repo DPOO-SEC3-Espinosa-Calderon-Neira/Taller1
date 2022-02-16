@@ -46,7 +46,7 @@ public class Pedido {
 	// ************************************************************************
 
 	public int getIdPedido() {
-		return idPedido;
+		return this.idPedido;
 	}
 
 	public String getNombre() {
