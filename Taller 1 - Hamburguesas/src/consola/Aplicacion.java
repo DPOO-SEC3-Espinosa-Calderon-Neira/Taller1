@@ -56,7 +56,7 @@ public class Aplicacion {
 				int opcion_seleccionada = Integer.parseInt(input("\nPor favor seleciona una opcion"));
 				if (opcion_seleccionada == 1) {
 					if (enProgreso == 1) {
-						System.out.print("\nDebes finalizar tu pedido antes de poder iniciar uno nuevo. Ingresa 2 para ver el menu.");
+						System.out.print("\nDebes finalizar tu pedido antes de poder iniciar uno nuevo");
 					}
 					else {
 						iniciado = true;
@@ -87,18 +87,12 @@ public class Aplicacion {
 						System.out.print("\nNo puedes finalizar tu pedido antes de iniciarlo.");
 				}				
 				else if (opcion_seleccionada == 4)
-					if (iniciado) {
-						if (agregado) {
-							if (finalizado)
-								consultar_pedido();
-							else
-								System.out.print("\nDebes finalizar tu pedido antes de poder consultarlo.");
-						}
-						else
-							System.out.print("\nDebes finalizar tu pedido antes de poder consultarlo.");
-					}
+					
+					if (finalizado)
+							consultar_pedido();
 					else
-						System.out.print("\nTodavía no has hecho ningun pedido");
+							System.out.print("\nDebes finalizar tu pedido antes de poder consultarlo.");
+					
 				else if (opcion_seleccionada == 5) {
 					System.out.println("\nSaliendo de la aplicacion...");
 					continuar = false;
@@ -179,7 +173,6 @@ public class Aplicacion {
 														System.out.println((i+1) + ". " + valorI.getNombre() + " ----------------- $" + valorI.getCostoAdicional());
 													}
 													
-													// FALTA QUE NO PUEDA PONER UN NUMERO QUE NO ESTE EN LA LISTA
 													boolean continuarI = true;
 													while (continuarI) {
 														try {
@@ -328,7 +321,6 @@ public class Aplicacion {
 		while (continuarC) 
 			{
 			int id = Integer.parseInt(input("Ingrese el ID de su pedido"));
-			pedido.contains(id);
 			if (pedido.contains(id))
 			{
 				continuarC = false;
