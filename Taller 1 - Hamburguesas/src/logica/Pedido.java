@@ -119,4 +119,12 @@ public class Pedido {
 		String mensaje = generarTextoFactura();
 		return mensaje; 
 	}
+
+	public boolean contains(int id) {
+		System.out.println(listaPedidos.size());
+		if (listaPedidos.size() > id)
+			return true;
+		else
+			return false;
+	}
 }

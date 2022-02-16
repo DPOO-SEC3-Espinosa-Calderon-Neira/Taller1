@@ -28,17 +28,17 @@ public class Aplicacion {
 	}
 	
 	public void cargarArchivos() throws IOException {
-		
+		 /*	
 		restaurante.cargarInfoRestaurante("C:\\Users\\neira\\Desktop\\Eclipse\\Taller1\\Taller 1 - Hamburguesas\\data\\ingredientes.txt",
 				"C:\\Users\\neira\\Desktop\\Eclipse\\Taller1\\Taller 1 - Hamburguesas\\data\\menu.txt", 
 				"C:\\Users\\neira\\Desktop\\Eclipse\\Taller1\\Taller 1 - Hamburguesas\\data\\combos.txt");
-		
-    /*
+		*/
+   
 		restaurante.cargarInfoRestaurante
 		("./data/ingredientes.txt", 
 				"./data//menu.txt",
 				"./data/combos.txt");
-	*/
+
 	}
 
 	public void ejecutarOpcion() {
@@ -151,6 +151,7 @@ public class Aplicacion {
 															}
 															//input = 0 -> quitar
 															else if (accionIngrediente == 0) {
+																
 																modificacion += " sin " + valorI.getNombre(); 
 																//quitar ingrediente
 																continuar1 = false;
@@ -260,17 +261,28 @@ public class Aplicacion {
 		System.out.println("Gracias por comprar con nosotros.");
 	}
 
-	private void consultar_pedido() {
-		String id_string = input("Ingrese el id de su pedido: ");
-		int id = Integer.parseInt(id_string);
-		HashMap<String, ArrayList<String>> pedido = restaurante.getPedidoEnCurso(id);
-		ArrayList<String> nombre = pedido.get("Nombre cliente");
-		System.out.println(nombre);
-		ArrayList<String> direccion = pedido.get("Direccion cliente");
-		System.out.println(direccion);
-		ArrayList<String> productos = pedido.get("Productos");
-		System.out.println(productos);
-	}
+	private void consultar_pedido() 
+		{
+		boolean continuarC = true;
+		while (continuarC) 
+			{
+			int id = Integer.parseInt(input("Ingrese el id de su pedido"));
+			if (pedido.contains(id))
+			{
+				continuarC = false;
+				HashMap<String, ArrayList<String>> pedido = restaurante.getPedidoEnCurso(id);
+				ArrayList<String> nombre = pedido.get("Nombre cliente");
+				System.out.println("Nombre del cliente: " + nombre);
+				ArrayList<String> direccion = pedido.get("Direccion cliente");
+				System.out.println("Direccion de envío: " + direccion);
+				ArrayList<String> productos = pedido.get("Productos");
+				System.out.println("Orden: " + productos);
+			}
+			else {
+				System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
+			 	}
+			}
+		}
 	
 	public String input(String mensaje)
 	{
