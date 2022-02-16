@@ -121,7 +121,8 @@ public class Pedido {
 	}
 
 	public boolean contains(int id) {
-		if (listaPedidos.size() >= id)
+		System.out.println(listaPedidos.size());
+		if (listaPedidos.size() > id)
 			return true;
 		else
 			return false;

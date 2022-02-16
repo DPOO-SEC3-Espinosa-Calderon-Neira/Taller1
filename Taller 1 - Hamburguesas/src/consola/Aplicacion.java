@@ -151,6 +151,7 @@ public class Aplicacion {
 															}
 															//input = 0 -> quitar
 															else if (accionIngrediente == 0) {
+																
 																modificacion += " sin " + valorI.getNombre(); 
 																//quitar ingrediente
 																continuar1 = false;
@@ -271,11 +272,11 @@ public class Aplicacion {
 				continuarC = false;
 				HashMap<String, ArrayList<String>> pedido = restaurante.getPedidoEnCurso(id);
 				ArrayList<String> nombre = pedido.get("Nombre cliente");
-				System.out.println(nombre);
+				System.out.println("Nombre del cliente: " + nombre);
 				ArrayList<String> direccion = pedido.get("Direccion cliente");
-				System.out.println(direccion);
+				System.out.println("Direccion de envío: " + direccion);
 				ArrayList<String> productos = pedido.get("Productos");
-				System.out.println(productos);
+				System.out.println("Orden: " + productos);
 			}
 			else {
 				System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
