@@ -41,7 +41,7 @@ public class Aplicacion {
    
 		restaurante.cargarInfoRestaurante
 		("./data/ingredientes.txt", 
-				"./data//menu.txt",
+				"./data/menu.txt",
 				"./data/combos.txt");
 
 	}
@@ -317,7 +317,7 @@ public class Aplicacion {
 		System.out.println(restaurante.cerrarYGuardarPedido());
 		System.out.println("Gracias por comprar con nosotros.");
 		int id = pedido.getIdPedido();
-		PrintWriter writer = new PrintWriter("data/facturas/" + String.valueOf(id), "UTF-8");
+		PrintWriter writer = new PrintWriter(String.valueOf(id)+ ".txt","UTF-8");
 		writer.println(listaPedidos.get(id).get("Nombre cliente"));
 		writer.println(listaPedidos.get(id).get("Direccion cliente"));
 		writer.close();

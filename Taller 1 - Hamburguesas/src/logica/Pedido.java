@@ -39,7 +39,7 @@ public class Pedido {
 		mapPedido.put("Nombre cliente", nombre);
 		mapPedido.put("Direccion cliente", direccion);
 		Aplicacion.listaPedidos.add(mapPedido);
-		System.out.println("SIZE LISTA PEDIDOS: "+Aplicacion.listaPedidos.size());
+		
 	}
 
 	// ************************************************************************
