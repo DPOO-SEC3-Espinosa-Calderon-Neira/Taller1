@@ -121,7 +121,9 @@ public class Pedido {
 	}
 
 	public boolean contains(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		if (listaPedidos.size() >= id)
+			return true;
+		else
+			return false;
 	}
 }

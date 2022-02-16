@@ -265,8 +265,7 @@ public class Aplicacion {
 		boolean continuarC = true;
 		while (continuarC) 
 			{
-			Integer id_string = input("Ingrese el id de su pedido: ");
-			int id = Integer.parseInt(id_string);
+			int id = Integer.parseInt(input("Ingrese el id de su pedido"));
 			if (pedido.contains(id))
 			{
 				continuarC = false;
