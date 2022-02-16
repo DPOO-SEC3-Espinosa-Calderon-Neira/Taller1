@@ -20,9 +20,9 @@ public class Pedido {
 	private String direccionCliente;
 	public double precioTotal = 0.0;
 
-	HashMap<String, ArrayList<String>> mapPedido = new HashMap<String, ArrayList<String>>();
-	ArrayList<String> listaProductos = new ArrayList<String>();
-	ArrayList<String> listaPrecios = new ArrayList<String>();
+	private HashMap<String, ArrayList<String>> mapPedido = new HashMap<String, ArrayList<String>>();
+	private ArrayList<String> listaProductos = new ArrayList<String>();
+	private ArrayList<String> listaPrecios = new ArrayList<String>();
 
 	// ************************************************************************
 	// Constructores
@@ -47,7 +47,7 @@ public class Pedido {
 	// ************************************************************************
 
 	public int getIdPedido() {
-		return this.idPedido;
+		return idPedido;
 	}
 
 	public String getNombre() {

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ProductoAjustado implements Producto {
 	
 	private double precio;
-	public String nombre;
+	private String nombre;
 
 	public ArrayList<Ingrediente> ingredientesAgregados = new ArrayList<Ingrediente>();
 	
