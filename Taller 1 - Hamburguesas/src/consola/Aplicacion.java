@@ -323,13 +323,12 @@ public class Aplicacion {
 			int id = Integer.parseInt(input("Ingrese el ID de su pedido"));
 			if (pedido.contains(id))
 			{
-				continuarC = false;
-				HashMap<String, ArrayList<String>> pedido = restaurante.getPedidoEnCurso(id);
-				ArrayList<String> nombre = pedido.get("Nombre cliente");
+				continuarC = false;				
+				ArrayList<String> nombre = listaPedidos.get(id).get("Nombre cliente");
 				System.out.println("Nombre del cliente: " + nombre);
-				ArrayList<String> direccion = pedido.get("Direccion cliente");
+				ArrayList<String> direccion = listaPedidos.get(id).get("Direccion cliente");
 				System.out.println("Direccion de envío: " + direccion);
-				ArrayList<String> productos = pedido.get("Productos");
+				ArrayList<String> productos = listaPedidos.get(id).get("Productos");
 				System.out.println("Orden: " + productos);
 			}
 			else {
