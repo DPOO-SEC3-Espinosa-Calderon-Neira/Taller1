@@ -15,6 +15,7 @@ import logica.Restaurante;
 
 public class Aplicacion {
 	
+	public static ArrayList<HashMap<String, ArrayList<String>>> listaPedidos = new ArrayList<HashMap<String, ArrayList<String>>>();
 	private Restaurante restaurante = new Restaurante();
 	private Pedido pedido;
 	private String modificacion = "";
@@ -22,7 +23,8 @@ public class Aplicacion {
 	public static void main(String[] args) throws IOException {
 		Aplicacion consola = new Aplicacion();
 		System.out.println("\n   ---------------------------       BIENVENIDO       ---------------------------   ");
-		System.out.println("\nCrea tu perdido a travï¿½s de nuestra App y disfrutalo desde la comodidad de tu casa.");
+		System.out.println("\nPide tu comida a traves de nuestra App y disfrutalo desde la comodidad de tu casa.");
+		System.out.println("\nIngresa 1 para iniciar tu pedido.");
 		consola.cargarArchivos();
 		consola.ejecutarOpcion();
 	}
@@ -42,50 +44,92 @@ public class Aplicacion {
 	}
 
 	public void ejecutarOpcion() {
+		boolean iniciado = false;
+		boolean agregado = false;
+		boolean finalizado = false;
 		boolean continuar = true;
+		int enProgreso = 0;
 		while (continuar) {
 			try
 			{
 				mostrarMenu();
-				int opcion_seleccionada = Integer.parseInt(input("\nPor favor seleciona una opciï¿½n"));
-				if (opcion_seleccionada == 1)
-					iniciar_pedido();
-				else if (opcion_seleccionada == 2)
-					agregar_elemento();
-				else if (opcion_seleccionada == 3)
-					finalizar_pedido();
+				int opcion_seleccionada = Integer.parseInt(input("\nPor favor seleciona una opcion"));
+				if (opcion_seleccionada == 1) {
+					if (enProgreso == 1) {
+						System.out.print("\nDebes finalizar tu pedido antes de poder iniciar uno nuevo. Ingresa 2 para ver el menu.");
+					}
+					else {
+						iniciado = true;
+						enProgreso = 1;
+						iniciar_pedido();
+					}
+				}
+				else if (opcion_seleccionada == 2) {
+					if (iniciado) {
+						agregar_elemento();
+						agregado = true;
+					}
+					else
+						System.out.print("\nDebes iniciar un pedido antes de ver el menu.");
+				}
+				else if (opcion_seleccionada == 3) {
+					if (iniciado) {
+						if (agregado) {
+							finalizar_pedido();
+							finalizado = true;
+							iniciado = false;
+							agregado = false;
+						}
+						else
+							System.out.print("\nDebes ver el menu y ordenar algun producto antes de finalizar tu pedido.");
+					}
+					else
+						System.out.print("\nNo puedes finalizar tu pedido antes de iniciarlo.");
+				}				
 				else if (opcion_seleccionada == 4)
-					consultar_pedido();
+					if (iniciado) {
+						if (agregado) {
+							if (finalizado)
+								consultar_pedido();
+							else
+								System.out.print("\nDebes finalizar tu pedido antes de poder consultarlo.");
+						}
+						else
+							System.out.print("\nDebes finalizar tu pedido antes de poder consultarlo.");
+					}
+					else
+						System.out.print("\nTodavía no has hecho ningun pedido");
 				else if (opcion_seleccionada == 5) {
-					System.out.println("\nSaliendo de la aplicaciï¿½n...");
+					System.out.println("\nSaliendo de la aplicacion...");
 					continuar = false;
 				} 
 				else
-					System.out.println("\nDebes seleccionar uno de los nï¿½meros de las opciones");
+					System.out.println("\nDebes seleccionar uno de los numeros de las opciones");
 			}
 			catch (NumberFormatException e)
 			{
-				System.out.println("\nDebes seleccionar uno de los nï¿½meros de las opciones");
+				System.out.println("\nDebes seleccionar uno de los numeros de las opciones");
 			}
 		}
 	}
 	
 	public void mostrarMenu() {
-		System.out.println("\nOpciones ");
-		System.out.println("1. Iniciar un pedido");
-		System.out.println("2. Agregar elemento ");
-		System.out.println("3. Finalizar pedido");
-		System.out.println("4. Consultar pedido");
+		System.out.println("\n\nOpciones ");
+		System.out.println("1. Iniciar pedido ");
+		System.out.println("2. Ver menu ");
+		System.out.println("3. Finalizar mi pedido");
+		System.out.println("4. Consultar mi pedido");
 		System.out.println("5. Salir");	
 	}
 	
 	private void iniciar_pedido() {
 		String nombreCliente = input("\nPor favor ingresa tu nombre");
-		String direccionCliente = input("Por favor ingresa tu direccion");
+		String direccionCliente = input("Por favor ingresa la direccion de envio");
+		Pedido.idPedido += 1;
+		
 		this.pedido = restaurante.iniciarPedido(nombreCliente, direccionCliente);
-		pedido.idPedido += 1;
-		System.out.println("\nHola " + nombreCliente + ", tu pedido es el nï¿½mero " + pedido.idPedido + ".");
-		System.out.println("Selecciona la opciï¿½n 2 para ver el menu y agregar elementos a tu pedido.");
+		System.out.println("\nHola " + nombreCliente + ", recuerda que el ID de tu pedido es: " + Pedido.idPedido + ".");
+		System.out.println("Selecciona la opcion 2 para ver el menu.");
 	}
 	
 	private void agregar_elemento() {
@@ -109,8 +153,8 @@ public class Aplicacion {
 					while (continuarP) {
 						try {
 							int numProducto = Integer.parseInt(input("\nIngresa el numero del producto que deseas agregar"));
-							if (numProducto > productosMenu.size())
-								System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
+							if (numProducto > productosMenu.size()) //verificar que ingrese un numero dentro de la lista
+								System.out.println("\nPor favor ingresa una opcion valida.\n");
 							else {
 								continuarP = false;
 								ProductoMenu valorP = productosMenu.get(numProducto-1);
@@ -120,7 +164,7 @@ public class Aplicacion {
 								
 								while (continuar0) {
 									try {
-										int modificar = Integer.parseInt(input("\nPara agregar o quitar algï¿½n ingrediente ingresa 1. De lo contrario ingresa 0"));
+										int modificar = Integer.parseInt(input("\nPara agregar o quitar algun ingrediente ingresa 1. De lo contrario ingresa 0"));
 										//input = 1 -> modificar
 										if (modificar == 1){
 											ProductoAjustado valorPA = new ProductoAjustado(valorP);
@@ -134,67 +178,84 @@ public class Aplicacion {
 														Ingrediente valorI = ingredientes.get(i);
 														System.out.println((i+1) + ". " + valorI.getNombre() + " ----------------- $" + valorI.getCostoAdicional());
 													}
-													int numIngrediente = Integer.parseInt(input("\nIngresa el numero del ingrediente que deseas agregar o quitar"));
+													
 													// FALTA QUE NO PUEDA PONER UN NUMERO QUE NO ESTE EN LA LISTA
-													Ingrediente valorI = ingredientes.get(numIngrediente-1);
-													boolean continuar12 = true;
-													while (continuar12) {
+													boolean continuarI = true;
+													while (continuarI) {
 														try {
-															int accionIngrediente = Integer.parseInt(input("\nIngresa 1 para agregar el ingrediente o 0 para quitarlo"));
-															//input = 1 -> agregar
-															if (accionIngrediente == 1) {
-																modificacion += " con " + valorI.getNombre();
+															int numIngrediente = Integer.parseInt(input("\nIngresa el numero del ingrediente que deseas agregar o quitar"));
+															if (numIngrediente > ingredientes.size()) //verificar que ingrese un numero dentro de la lista
+																System.out.println("\nPor favor ingresa una opcion valida.\n");
+															else {
+																continuarI = false;
+																Ingrediente valorI = ingredientes.get(numIngrediente-1);
 																
-																valorPA.ingredientesAgregados.add(valorI);
-																continuar1 = false;
-																continuar12 = false;
+																boolean continuar12 = true;
+																while (continuar12) {
+																	try {
+																		int accionIngrediente = Integer.parseInt(input("\nIngresa 1 para agregar el ingrediente o 0 para quitarlo"));
+																		//input = 1 -> agregar
+																		if (accionIngrediente == 1) {
+																			modificacion += " con " + valorI.getNombre();
+																			
+																			valorPA.ingredientesAgregados.add(valorI);
+																			continuar1 = false;
+																			continuar12 = false;
+																		}
+																		//input = 0 -> quitar
+																		else if (accionIngrediente == 0) {
+																			
+																			modificacion += " sin " + valorI.getNombre(); 
+																			//quitar ingrediente
+																			continuar1 = false;
+																			continuar12 = false;
+																		}
+																		else
+																			System.out.println("\nPor favor ingresa una opcion valida.\n");
+																	}
+																	catch (NumberFormatException e)
+																	{
+																		System.out.println("\nPor favor ingresa una opcion valida.\n");
+																	}
+																}
+																boolean continuar2 = true;
+																while (continuar2) {
+																	try {
+																		int seguir = Integer.parseInt(input("Para seguir modificando los ingredientes del producto " + valorP.getNombre() + " ingresa 1. De lo contrario ingresa 0"));
+																		//input = 1 -> seguir modificando el producto
+																		if (seguir == 1){
+																			continuar1 = true;
+																			continuar2 = false;
+																		}
+																		//input = 0 -> agregar el producto
+																		else if (seguir == 0) {
+																			
+																			pedido.agregarProducto(valorPA);
+																			System.out.println("\nEl producto " + valorP.getNombre() + modificacion + " se agrego correctamente a tu pedido.");
+																			System.out.println("\nTotal: $" + pedido.precioTotal);
+																			System.out.println("Para seguir agregando elementos selecciona la opcion 2.");
+																			continuar2 = false;
+																		}
+																		else
+																			System.out.println("\nPor favor ingresa una opcion valida.\n");
+																	}
+																	catch (NumberFormatException e)
+																	{
+																		System.out.println("\nPor favor ingresa una opcion valida.\n");
+																	}
+																}
 															}
-															//input = 0 -> quitar
-															else if (accionIngrediente == 0) {
-																
-																modificacion += " sin " + valorI.getNombre(); 
-																//quitar ingrediente
-																continuar1 = false;
-																continuar12 = false;
-															}
-															else
-																System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
 														}
 														catch (NumberFormatException e)
 														{
-															System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
+															System.out.println("\nPor favor ingresa una opcion valida.\n");
 														}
 													}
-													boolean continuar2 = true;
-													while (continuar2) {
-														try {
-															int seguir = Integer.parseInt(input("Para seguir agregando o quitando ingredientes del producto " + valorP.getNombre() + " ingresa 1. De lo contrario ingresa 0"));
-															//input = 1 -> seguir modificando el producto
-															if (seguir == 1){
-																continuar1 = true;
-																continuar2 = false;
-															}
-															//input = 0 -> agregar el producto
-															else if (seguir == 0) {
-																
-																pedido.agregarProducto(valorPA);
-																System.out.println("\nEl producto " + valorP.getNombre() + modificacion + " se agregï¿½ correctamente a tu pedido.");
-																System.out.println("\nTotal: $" + pedido.precioTotal);
-																System.out.println("Para seguir agregando elementos selecciona la opciï¿½n 2.");
-																continuar2 = false;
-															}
-															else
-																System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
-														}
-														catch (NumberFormatException e)
-														{
-															System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
-														}
-													}
+													
 												}
 												catch (NumberFormatException e)
 												{
-													System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
+													System.out.println("\nPor favor ingresa una opcion valida.\n");
 												}
 											}
 										}
@@ -202,23 +263,23 @@ public class Aplicacion {
 										else if (modificar == 0) {
 											continuar0 = false;
 											pedido.agregarProducto(valorP);
-											System.out.println("\nEl producto " + valorP.getNombre() + " se agregï¿½ correctamente a tu pedido.");
+											System.out.println("\nEl producto " + valorP.getNombre() + " se agrego correctamente a tu pedido.");
 											System.out.println("\nTotal: $" + pedido.precioTotal);
-											System.out.println("Para seguir agregando elementos selecciona la opciï¿½n 2.");
+											System.out.println("Para seguir agregando elementos selecciona la opcion 2. Para finalizar tu pedido ingresa 3.");
 										}
 										else 
-											System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
+											System.out.println("\nPor favor ingresa una opcion valida.\n");
 									}
 									catch (NumberFormatException e)
 									{
-										System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
+										System.out.println("\nPor favor ingresa una opcion valida.\n");
 									}
 								}
 							}
 						}
 						catch (NumberFormatException e)
 						{
-							System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
+							System.out.println("\nPor favor ingresa una opcion valida.\n");
 						}
 					}
 				}
@@ -235,23 +296,23 @@ public class Aplicacion {
 					while (continuarC) {
 						int numCombo = Integer.parseInt(input("\nIngresa el numero del combo que deseas agregar"));
 						if (numCombo > combos.size())
-							System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
+							System.out.println("\nPor favor ingresa una opcion valida.\n");
 						else {
 							continuarC = false;
 							Combo valorC = combos.get(numCombo-1);
 							pedido.agregarProducto(valorC);
-							System.out.println("\nEl " + valorC.getNombre() + " se agregï¿½ correctamente a tu pedido.");
+							System.out.println("\nEl " + valorC.getNombre() + " se agrego correctamente a tu pedido.");
 							System.out.println("\nTotal: $" + pedido.precioTotal);
-							System.out.println("Para seguir agregando elementos selecciona la opciï¿½n 2.");
+							System.out.println("Para seguir agregando elementos selecciona la opcion 2. Para finalizar tu pedido ingresa 3.");
 						}
 					}
 				}
 				else
-					System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
+					System.out.println("\nPor favor ingresa una opcion valida.\n");
 			}
 			catch (NumberFormatException e)
 			{
-				System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
+				System.out.println("\nPor favor ingresa una opcion valida.\n");
 			}
 		}
 	}
@@ -266,7 +327,8 @@ public class Aplicacion {
 		boolean continuarC = true;
 		while (continuarC) 
 			{
-			int id = Integer.parseInt(input("Ingrese el id de su pedido"));
+			int id = Integer.parseInt(input("Ingrese el ID de su pedido"));
+			pedido.contains(id);
 			if (pedido.contains(id))
 			{
 				continuarC = false;
@@ -279,7 +341,7 @@ public class Aplicacion {
 				System.out.println("Orden: " + productos);
 			}
 			else {
-				System.out.println("\nPor favor ingresa una opciï¿½n vï¿½lida.\n");
+				System.out.println("\nPor favor ingresa una opcion valida.\n");
 			 	}
 			}
 		}

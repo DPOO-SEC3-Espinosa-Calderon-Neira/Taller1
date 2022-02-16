@@ -2,6 +2,7 @@ package logica;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import consola.Aplicacion;
 
 /**
  * Esta clase encapsula la informacion sobre los pedidos y calcula algunas cosas
@@ -13,13 +14,12 @@ public class Pedido {
 	// Atributos
 	// ************************************************************************
 
-	private static int numeroPedidos;
-	public int idPedido = -1;
+	private static int numeroPedidos = 0;
+	public static int idPedido = -1;
 	private String nombreCliente;
 	private String direccionCliente;
 	public double precioTotal = 0.0;
 
-	ArrayList<HashMap<String, ArrayList<String>>> listaPedidos = new ArrayList<HashMap<String, ArrayList<String>>>();
 	HashMap<String, ArrayList<String>> mapPedido = new HashMap<String, ArrayList<String>>();
 	ArrayList<String> listaProductos = new ArrayList<String>();
 	ArrayList<String> listaPrecios = new ArrayList<String>();
@@ -29,7 +29,7 @@ public class Pedido {
 	// ************************************************************************
 
 	public Pedido(String nombreCliente, String direccionCliente) {
-
+		
 		this.nombreCliente = nombreCliente;
 		this.direccionCliente = direccionCliente;
 		ArrayList<String> nombre = new ArrayList<String>();
@@ -38,7 +38,8 @@ public class Pedido {
 		direccion.add(direccionCliente);
 		mapPedido.put("Nombre cliente", nombre);
 		mapPedido.put("Direccion cliente", direccion);
-		listaPedidos.add(mapPedido);
+		Aplicacion.listaPedidos.add(mapPedido);
+		System.out.println("SIZE LISTA PEDIDOS: "+Aplicacion.listaPedidos.size());
 	}
 
 	// ************************************************************************
@@ -121,8 +122,7 @@ public class Pedido {
 	}
 
 	public boolean contains(int id) {
-		System.out.println(listaPedidos.size());
-		if (listaPedidos.size() > id)
+		if (Aplicacion.listaPedidos.size() > id)
 			return true;
 		else
 			return false;
