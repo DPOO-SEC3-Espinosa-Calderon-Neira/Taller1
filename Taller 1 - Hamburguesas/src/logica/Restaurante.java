@@ -131,7 +131,6 @@ public class Restaurante {
 			Combo combo_descuento = new Combo(descuento, nombreCombo);
 			combos.add(combo_descuento);
 		}
-
 		br.close();
 	}
 }

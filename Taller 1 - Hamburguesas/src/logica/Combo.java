@@ -1,5 +1,6 @@
 package logica;
 
+
 public class Combo implements Producto {
 
 	private double descuento;
