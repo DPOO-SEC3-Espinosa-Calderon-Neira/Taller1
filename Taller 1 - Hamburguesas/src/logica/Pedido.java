@@ -119,4 +119,9 @@ public class Pedido {
 		String mensaje = generarTextoFactura();
 		return mensaje; 
 	}
+
+	public boolean contains(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
